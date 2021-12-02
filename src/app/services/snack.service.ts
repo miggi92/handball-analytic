@@ -15,7 +15,8 @@ export class SnackService {
       duration: 5000
     });
 
-    return this.snackBar._openedSnackBarRef
+    if(this.snackBar._openedSnackBarRef){
+      return this.snackBar._openedSnackBarRef
       .onAction()
       .pipe(
         tap(_ =>
@@ -23,5 +24,10 @@ export class SnackService {
         )
       )
       .subscribe();
+    } else {
+      return null;
+    }
+
+
   }
 }

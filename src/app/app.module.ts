@@ -11,6 +11,7 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAnalyticsModule  } from '@angular/fire/compat/analytics';
 import { AngularFirePerformanceModule, PerformanceMonitoringService } from '@angular/fire/compat/performance';
 import { environment } from './../environments/environment';
+import { SnackService } from './services/snack.service';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { environment } from './../environments/environment';
     AngularFireAnalyticsModule,
     AngularFirePerformanceModule,
   ],
-  providers: [PerformanceMonitoringService],
+  providers: [PerformanceMonitoringService, SnackService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
