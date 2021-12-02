@@ -16,7 +16,7 @@ import { SnackService } from './services/snack.service';
 @NgModule({
   declarations: [
     AppComponent,
-    HomePageComponent
+    HomePageComponent,
   ],
   imports: [
     BrowserModule,

@@ -35,6 +35,8 @@
       <div *ngIf="!(isHandset$ | async)">
         <a mat-button routerLink="/club" *ngIf="auth.authState | async as user">💼 Vereine</a>
         <a mat-button routerLink="/game" *ngIf="auth.authState | async as user">🎮 Spiele</a>
+        <a mat-button routerLink="/base/imprint" >📖 Impressum</a>
+        <a mat-button routerLink="/base/privacy" >🔒 Datenschutz</a>
         <a mat-button routerLink="/login" >🔑 Login</a>
       </div>
     </mat-toolbar>
