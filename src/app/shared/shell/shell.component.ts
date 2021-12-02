@@ -18,5 +18,8 @@ export class ShellComponent {
     );
 
   constructor(private breakpointObserver: BreakpointObserver, public auth: AngularFireAuth) {}
+  logout(){
+    this.auth.signOut();
+  }
 
 }
