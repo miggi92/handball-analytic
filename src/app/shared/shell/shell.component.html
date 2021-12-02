@@ -11,7 +11,7 @@
 
       <a mat-list-item routerLink="/" (click)="drawer.close()">Home</a>
       <a mat-list-item routerLink="/club" (click)="drawer.close()"  *ngIf="auth.authState | async as user">Vereine</a>
-      <a mat-list-item routerLink="/login" (click)="drawer.close()">Login</a>
+      <a mat-list-item routerLink="/user/login" *ngIf="!(auth.authState | async)" (click)="drawer.close()">Login</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -37,7 +37,8 @@
         <a mat-button routerLink="/game" *ngIf="auth.authState | async as user">🎮 Spiele</a>
         <a mat-button routerLink="/base/imprint" >📖 Impressum</a>
         <a mat-button routerLink="/base/privacy" >🔒 Datenschutz</a>
-        <a mat-button routerLink="/login" >🔑 Login</a>
+        <a mat-button routerLink="/user/login" *ngIf="!(auth.authState | async)">🔑 Login</a>
+        <a mat-button routerLink="/user/profile" *ngIf="auth.authState | async as user">👤 {{user.displayName}}</a>
       </div>
     </mat-toolbar>
 
