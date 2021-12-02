@@ -7,6 +7,9 @@ const routes: Routes = [
   { path: '', component: HomePageComponent },
   {
     path: 'login', loadChildren: () => import('./user/user.module').then(m => m.UserModule)
+  },
+  {
+    path: 'club', loadChildren: () => import('./club/club.module').then(m => m.ClubModule)
   }
 ];
 
