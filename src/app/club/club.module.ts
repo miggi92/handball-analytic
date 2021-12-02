@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { ClubRoutingModule } from './club-routing.module';
 import { ClubListComponent } from './club-list/club-list.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -11,6 +12,7 @@ import { ClubListComponent } from './club-list/club-list.component';
   ],
   imports: [
     CommonModule,
+    SharedModule,
     ClubRoutingModule
   ]
 })

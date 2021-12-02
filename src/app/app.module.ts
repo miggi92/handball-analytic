@@ -12,6 +12,7 @@ import { AngularFireAnalyticsModule  } from '@angular/fire/compat/analytics';
 import { AngularFirePerformanceModule, PerformanceMonitoringService } from '@angular/fire/compat/performance';
 import { environment } from './../environments/environment';
 import { SnackService } from './services/snack.service';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,12 @@ import { SnackService } from './services/snack.service';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAnalyticsModule,
     AngularFirePerformanceModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
   ],
   providers: [PerformanceMonitoringService, SnackService],
   bootstrap: [AppComponent]

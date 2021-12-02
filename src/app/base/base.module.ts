@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { BaseRoutingModule } from './base-routing.module';
 import { PrivacyComponent } from './privacy/privacy.component';
 import { ImprintComponent } from './imprint/imprint.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -13,6 +14,7 @@ import { ImprintComponent } from './imprint/imprint.component';
   ],
   imports: [
     CommonModule,
+    SharedModule,
     BaseRoutingModule
   ]
 })
