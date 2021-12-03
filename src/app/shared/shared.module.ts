@@ -17,6 +17,9 @@ import { ShellComponent } from './shell/shell.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatTableModule} from '@angular/material/table';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatDialogModule} from '@angular/material/dialog';
+import { FormsModule } from '@angular/forms';
+
 
 const components = [ShellComponent];
 
@@ -37,7 +40,9 @@ const modules = [
   MatTabsModule,
   MatSlideToggleModule,
   RouterModule,
-  MatTableModule
+  MatTableModule,
+  MatDialogModule,
+  FormsModule
 ];
 
 @NgModule({

@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Club } from '../models/club.model';
 import { ClubDatabaseService } from '../services/club-database.service';
-import {MatSort} from '@angular/material/sort';
+import { MatDialog } from '@angular/material/dialog';
+import { ClubDialogComponent } from '../dialogs/club-dialog.component';
 
 @Component({
   selector: 'app-club-list',
@@ -14,7 +15,7 @@ export class ClubListComponent implements OnInit {
   clubs: Club[] = [];
   sub: Subscription = new Subscription;
 
-  constructor(private clubDB: ClubDatabaseService) { }
+  constructor(private clubDB: ClubDatabaseService,  public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.sub = this.clubDB
@@ -26,8 +27,19 @@ export class ClubListComponent implements OnInit {
     this.sub.unsubscribe();
   }
 
-  addClub(){
-    this.clubDB.createClub({name: 'TEST'});
+  openClubDialog(): void {
+    const dialogRef = this.dialog.open(ClubDialogComponent, {
+      width: '400px',
+      data: {  }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.clubDB.createClub({
+          name: result
+        });
+      }
+    });
   }
 
 }
