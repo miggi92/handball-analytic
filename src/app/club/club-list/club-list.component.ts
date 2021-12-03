@@ -11,7 +11,7 @@ import { ClubCreateDialogComponent } from '../dialogs/club-create-dialog.compone
   styleUrls: ['./club-list.component.scss']
 })
 export class ClubListComponent implements OnInit {
-  displayedColumns: string[] = ['name', 'owner'];
+  displayedColumns: string[] = ['name', 'owner', 'actionsColumn'];
   clubs: Club[] = [];
   sub: Subscription = new Subscription;
 
@@ -40,6 +40,12 @@ export class ClubListComponent implements OnInit {
         });
       }
     });
+  }
+
+  deleteClub(club: Club){
+    if(club.id){
+      this.clubDB.deleteClub(club.id);
+    }
   }
 
 }

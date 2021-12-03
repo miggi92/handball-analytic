@@ -25,7 +25,9 @@ export class ClubDatabaseService {
             .collection<Club>(this._collection, ref =>
               ref.where('owner', '==', user.uid).orderBy('name')
             )
-            .valueChanges();
+            .valueChanges({
+              idField: 'id'
+            });
         } else {
           return [];
         }
@@ -39,5 +41,12 @@ export class ClubDatabaseService {
       ...data,
       owner: user.uid
     });
+  }
+
+  deleteClub(clubId: string){
+    return this.db
+      .collection(this._collection)
+      .doc(clubId)
+      .delete();
   }
 }
