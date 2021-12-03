@@ -3,7 +3,7 @@ import { Subscription } from 'rxjs';
 import { Club } from '../models/club.model';
 import { ClubDatabaseService } from '../services/club-database.service';
 import { MatDialog } from '@angular/material/dialog';
-import { ClubDialogComponent } from '../dialogs/club-dialog.component';
+import { ClubCreateDialogComponent } from '../dialogs/club-create-dialog.component';
 
 @Component({
   selector: 'app-club-list',
@@ -28,7 +28,7 @@ export class ClubListComponent implements OnInit {
   }
 
   openClubDialog(): void {
-    const dialogRef = this.dialog.open(ClubDialogComponent, {
+    const dialogRef = this.dialog.open(ClubCreateDialogComponent, {
       width: '400px',
       data: {  }
     });

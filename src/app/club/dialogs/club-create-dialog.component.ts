@@ -2,7 +2,7 @@ import { Component, Inject  } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-club-dialog',
+  selector: 'app-club-create-dialog',
   template: `
     <h1 mat-dialog-title>Verein erstellen</h1>
     <div mat-dialog-content>
@@ -21,10 +21,10 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   styles: [
   ]
 })
-export class ClubDialogComponent {
+export class ClubCreateDialogComponent {
 
   constructor(
-    public dialogRef: MatDialogRef<ClubDialogComponent>,
+    public dialogRef: MatDialogRef<ClubCreateDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   onNoClick(): void {

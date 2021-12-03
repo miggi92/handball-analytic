@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ClubDialogComponent } from './club-dialog.component';
+import { ClubCreateDialogComponent } from './club-create-dialog.component';
 
-describe('ClubDialogComponent', () => {
-  let component: ClubDialogComponent;
-  let fixture: ComponentFixture<ClubDialogComponent>;
+describe('ClubCreateDialogComponent', () => {
+  let component: ClubCreateDialogComponent;
+  let fixture: ComponentFixture<ClubCreateDialogComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ClubDialogComponent ]
+      declarations: [ ClubCreateDialogComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ClubDialogComponent);
+    fixture = TestBed.createComponent(ClubCreateDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
