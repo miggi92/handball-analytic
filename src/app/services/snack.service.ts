@@ -20,7 +20,7 @@ export class SnackService {
       .onAction()
       .pipe(
         tap(_ =>
-          this.router.navigate(['/login'])
+          this.router.navigate(['/user/login'])
         )
       )
       .subscribe();

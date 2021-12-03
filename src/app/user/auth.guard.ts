@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
+import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot } from '@angular/router';
 import { SnackService } from '../services/snack.service';
+import { AuthService } from './services/auth.service';
+import { Observable, of } from 'rxjs';
+import { tap, map, take } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -10,20 +11,24 @@ import { SnackService } from '../services/snack.service';
 export class AuthGuard implements CanActivate {
 
   constructor(
-    private auth: AngularFireAuth,
+    private auth: AuthService,
     private snack: SnackService
   ) {}
 
-  async canActivate(
+  canActivate(
     route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Promise<boolean> {
+    state: RouterStateSnapshot): Observable<boolean> {
 
-      const user = await this.auth.currentUser;
-      const isLoggedIn = !!user;
-      if (!isLoggedIn) {
-        this.snack.authError();
-      }
-      return isLoggedIn;
+      return this.auth.user$.pipe(
+        take(1),
+        map(user => !!user), // <-- map to boolean
+        tap(loggedIn => {
+          if (!loggedIn) {
+            console.log('access denied')
+           this.snack.authError();
+          }
+      })
+    );
   }
 
 }
