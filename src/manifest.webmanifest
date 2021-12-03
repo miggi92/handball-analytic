@@ -1,11 +1,14 @@
 {
-  "name": "gameAnalysis",
+  "name": "Spielanalyse",
   "short_name": "gameAnalysis",
+  "description": "Diese Anwendung dient dazu eine Spielanalyse durchzuführen.",
   "theme_color": "#1976d2",
   "background_color": "#fafafa",
   "display": "standalone",
+  "orientation": "portrait",
   "scope": "./",
-  "start_url": "./",
+  "start_url": "./?utm_source=gameAnalysis_mgm12_pwa",
+  "gcm_sender_id": "15625157278",
   "icons": [
     {
       "src": "assets/icons/icon-72x72.png",
