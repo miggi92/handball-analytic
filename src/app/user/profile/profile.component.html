@@ -12,11 +12,9 @@
     <mat-card-content>
       <mat-tab-group dynamicHeight>
         <mat-tab label="Zugeordnete Vereine">
-          <mat-list>
-            <mat-list-item> TSV Test </mat-list-item>
-            <mat-list-item> TSB Test </mat-list-item>
-            <mat-list-item> SV Test </mat-list-item>
-           </mat-list>
+          <mat-list *ngFor="let club of clubs">
+            <mat-list-item> {{club.name}} </mat-list-item>
+          </mat-list>
         </mat-tab>
         <mat-tab label="Einstellungen">
           <p>Hier gibt es bald mal Einstellungen ;-)</p>

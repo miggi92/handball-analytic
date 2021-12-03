@@ -1,1 +1,25 @@
 <h1>Vereinsübersicht</h1>
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="clubs">
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="owner">
+      <mat-header-cell *matHeaderCellDef> Besitzer </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.owner}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </table>
+</div>
+
+<br />
+
+<button mat-fab color="primary" aria-label="Add a club" (click)="addClub()">
+  <mat-icon>add</mat-icon>
+</button>

@@ -15,6 +15,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ShellComponent } from './shell/shell.component';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatTableModule} from '@angular/material/table';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 const components = [ShellComponent];
@@ -36,6 +37,7 @@ const modules = [
   MatTabsModule,
   MatSlideToggleModule,
   RouterModule,
+  MatTableModule
 ];
 
 @NgModule({
