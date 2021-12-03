@@ -6,5 +6,6 @@ export interface User {
   roles?: {
     admin?: boolean,
     coach?: boolean
-  }
+  },
+  activeClub?: string;
 }

@@ -1,6 +1,6 @@
 <h1>Profil</h1>
 
-<div *ngIf="auth.authState | async as user">
+<div *ngIf="auth.user$| async as user">
   <mat-card>
     <mat-card-header>
       <div mat-card-avatar>
@@ -13,7 +13,9 @@
       <mat-tab-group dynamicHeight>
         <mat-tab label="Zugeordnete Vereine">
           <mat-list *ngFor="let club of clubs">
-            <mat-list-item> {{club.name}} </mat-list-item>
+            <mat-list-item>
+              <mat-slide-toggle [checked]="user.activeClub === club.id" (change)="changedActiveClub($event)" id="{{club.id}}">{{club.name}}</mat-slide-toggle>
+            </mat-list-item>
           </mat-list>
         </mat-tab>
         <mat-tab label="Einstellungen">

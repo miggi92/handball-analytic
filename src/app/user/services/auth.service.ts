@@ -5,14 +5,14 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat
 import { Router } from '@angular/router';
 import firebase from 'firebase/compat/app';
 import { firstValueFrom, Observable, of } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  user$: Observable<any>;
+  user$: Observable<User>;
 
   constructor( private afAuth: AngularFireAuth,
     private afs: AngularFirestore,
@@ -59,5 +59,10 @@ export class AuthService {
   async signOut() {
     await this.afAuth.signOut();
     this.router.navigate(['/']);
+  }
+
+  public async changeActiveClub(clubID: string){
+    let user = await this.getUser();
+    return this.afs.doc(`users/${user.uid}`).update({activeClub:clubID});
   }
 }
