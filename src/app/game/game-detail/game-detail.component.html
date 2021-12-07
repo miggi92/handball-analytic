@@ -9,6 +9,11 @@
     </mat-card-content>
   </mat-card>
   <mat-tab-group>
+    <div *ngIf="!game.done">
+      <mat-tab label="Spielbeobachtung">
+        <app-game-observation [game]="game"></app-game-observation>
+      </mat-tab>
+    </div>
     <mat-tab label="Spielbewertung"> Content 1 </mat-tab>
     <mat-tab label="Statistik"> Content 1 </mat-tab>
     <mat-tab label="Einstellungen"> Content 2 </mat-tab>

@@ -5,6 +5,7 @@ export interface Game{
   clubId?: string;
   opponent?: string;
   date?: Date;
+  done?: boolean;
   created?: {
     by: string,
     at: Date
