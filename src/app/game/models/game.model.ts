@@ -10,5 +10,8 @@ export interface Game{
     by: string,
     at: Date
   };
-  players?: Player[];
+  players?: {
+    home: Player[],
+    opponent: Player[]
+  }
 }

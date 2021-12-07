@@ -8,6 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class GameObservationComponent implements OnInit {
 
   @Input() game;
+  displayedColumns: string[] = ['date', 'opponent', 'actionsColumn'];
 
   constructor() { }
 
