@@ -5,12 +5,14 @@ import { GameRoutingModule } from './game-routing.module';
 import { GameListComponent } from './game-list/game-list.component';
 import { GameDetailComponent } from './game-detail/game-detail.component';
 import { SharedModule } from '../shared/shared.module';
+import { GameCreateDialogComponent } from './dialogs/game-create-dialog.component';
 
 
 @NgModule({
   declarations: [
     GameListComponent,
-    GameDetailComponent
+    GameDetailComponent,
+    GameCreateDialogComponent
   ],
   imports: [
     CommonModule,
