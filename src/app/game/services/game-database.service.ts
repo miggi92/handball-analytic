@@ -18,6 +18,10 @@ export class GameDatabaseService {
     return this.db.collection(this._collection).valueChanges({idField: 'id'});
   }
 
+  getGame(gameId){
+    return this.db.collection(this._collection).doc(gameId).valueChanges({idField: 'id'});
+  }
+
   getClubGames(clubID?: string){
     if(!clubID){
       clubID = '5092CgL9OaI6r9NH0pLZ';

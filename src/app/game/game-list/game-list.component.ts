@@ -11,13 +11,13 @@ import { GameDatabaseService } from '../services/game-database.service';
   styleUrls: ['./game-list.component.scss']
 })
 export class GameListComponent implements OnInit {
-  displayedColumns: string[] = ['date', 'opponent'];
+  displayedColumns: string[] = ['date', 'opponent', 'actionsColumn'];
   games: Game[] = [];
   sub: Subscription = new Subscription;
 
   constructor(private gameDB: GameDatabaseService,  public dialog: MatDialog) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.sub = this.gameDB
       .getClubGames()
       .subscribe(games => this.games = games);

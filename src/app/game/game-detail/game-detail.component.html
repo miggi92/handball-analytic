@@ -1,1 +1,16 @@
-<p>game-detail works!</p>
+<h1>Spielübersicht</h1>
+
+<div *ngIf="game">
+  <mat-card>
+    <mat-card-title>Gegner: {{game.opponent}}</mat-card-title>
+    <mat-card-subtitle>{{game.date}}</mat-card-subtitle>
+    <mat-card-content>
+
+    </mat-card-content>
+  </mat-card>
+  <mat-tab-group>
+    <mat-tab label="Spielbewertung"> Content 1 </mat-tab>
+    <mat-tab label="Statistik"> Content 1 </mat-tab>
+    <mat-tab label="Einstellungen"> Content 2 </mat-tab>
+  </mat-tab-group>
+</div>

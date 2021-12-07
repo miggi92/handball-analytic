@@ -2,7 +2,7 @@
 
 
 <div class="mat-elevation-z8">
-  <table mat-table [dataSource]="games">
+  <mat-table [dataSource]="games">
     <ng-container matColumnDef="date">
       <mat-header-cell *matHeaderCellDef> Datum </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.date}} </mat-cell>
@@ -13,6 +13,15 @@
       <mat-cell *matCellDef="let element"> {{element.opponent}} </mat-cell>
     </ng-container>
 
+    <ng-container matColumnDef="actionsColumn">
+      <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+         <button mat-raised-button focusable="false" [routerLink]="['detail', element.id]">
+          <mat-icon>details</mat-icon> Details
+         </button>
+      </mat-cell>
+   </ng-container>
+
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 
@@ -21,7 +30,7 @@
         Keine Spiele gefunden
       </td>
     </tr>
-  </table>
+  </mat-table>
 </div>
 
 <br />

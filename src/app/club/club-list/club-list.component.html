@@ -1,7 +1,7 @@
 <h1>Vereinsübersicht</h1>
 
 <div class="mat-elevation-z8">
-  <table mat-table [dataSource]="clubs">
+  <mat-table [dataSource]="clubs">
     <!-- Name Column -->
     <ng-container matColumnDef="name">
       <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
@@ -30,7 +30,7 @@
         Keine Vereine gefunden
       </td>
     </tr>
-  </table>
+  </mat-table>
 </div>
 
 <br />
