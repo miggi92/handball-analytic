@@ -2,20 +2,34 @@
 
 <div *ngIf="game">
   <mat-card>
-    <mat-card-title>Gegner: {{game.opponent}}</mat-card-title>
-    <mat-card-subtitle>{{game.date}}</mat-card-subtitle>
-    <mat-card-content>
-
-    </mat-card-content>
+    <mat-card-title>Gegner: {{ game.opponent }}</mat-card-title>
+    <mat-card-subtitle>{{ game.date }}</mat-card-subtitle>
+    <mat-card-content> </mat-card-content>
   </mat-card>
   <mat-tab-group>
     <div *ngIf="!game.done">
-      <mat-tab label="Spielbeobachtung">
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon class="tab-icon">remove_red_eye</mat-icon>
+          Spielbeobachtung
+        </ng-template>
         <app-game-observation [game]="game"></app-game-observation>
       </mat-tab>
     </div>
     <mat-tab label="Spielbewertung"> Content 1 </mat-tab>
-    <mat-tab label="Statistik"> Content 1 </mat-tab>
-    <mat-tab label="Einstellungen"> Content 2 </mat-tab>
+    <mat-tab
+      ><ng-template mat-tab-label>
+        <mat-icon class="tab-icon">show_chart</mat-icon>
+        Statistik
+      </ng-template>
+      Content 1
+    </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon class="tab-icon">settings</mat-icon>
+        Einstellungen
+      </ng-template>
+      Content 2
+    </mat-tab>
   </mat-tab-group>
 </div>
