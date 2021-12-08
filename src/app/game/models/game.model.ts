@@ -1,4 +1,5 @@
 import { Player } from "./player.model";
+import { Statistic } from "./statistic.model";
 
 export interface Game{
   id?: string;
@@ -13,5 +14,9 @@ export interface Game{
   players?: {
     home: Player[],
     opponent: Player[]
+  }
+  statistics?: {
+    home: Statistic[],
+    opponent: Statistic[]
   }
 }
