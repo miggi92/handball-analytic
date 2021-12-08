@@ -10,69 +10,63 @@
 </div>
 <br />
 <div *ngIf="game.players">
-  <h2>Eigene Spieler</h2>
-  <div class="mat-elevation-z8">
-    <mat-table [dataSource]="game.players.home">
-      <ng-container matColumnDef="date">
-        <mat-header-cell *matHeaderCellDef> Datum </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.date}} </mat-cell>
-      </ng-container>
-
-      <ng-container matColumnDef="opponent">
-        <mat-header-cell *matHeaderCellDef> Gegner </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.opponent}} </mat-cell>
-      </ng-container>
-
-      <ng-container matColumnDef="actionsColumn">
-        <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
-        <mat-cell *matCellDef="let element">
-           <button mat-raised-button focusable="false" [routerLink]="['detail', element.id]">
-            <mat-icon>details</mat-icon> Details
-           </button>
-        </mat-cell>
-     </ng-container>
-
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-
-      <tr class="mat-row" *matNoDataRow>
-        <td class="mat-cell" colspan="9999">
-          Keine Spiele gefunden
-        </td>
-      </tr>
-    </mat-table>
-  </div>
-  <h2>Gegner</h2>
-  <div class="mat-elevation-z8">
-    <mat-table [dataSource]="game.players.away">
-      <ng-container matColumnDef="date">
-        <mat-header-cell *matHeaderCellDef> Datum </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.date}} </mat-cell>
-      </ng-container>
-
-      <ng-container matColumnDef="opponent">
-        <mat-header-cell *matHeaderCellDef> Gegner </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.opponent}} </mat-cell>
-      </ng-container>
-
-      <ng-container matColumnDef="actionsColumn">
-        <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
-        <mat-cell *matCellDef="let element">
-           <button mat-raised-button focusable="false" [routerLink]="['detail', element.id]">
-            <mat-icon>details</mat-icon> Details
-           </button>
-        </mat-cell>
-     </ng-container>
-
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-
-      <tr class="mat-row" *matNoDataRow>
-        <td class="mat-cell" colspan="9999">
-          Keine Spiele gefunden
-        </td>
-      </tr>
-    </mat-table>
-  </div>
+  <ng-container
+    *ngTemplateOutlet="
+      playersTemplate;
+      context: { players: game.players.home, title: 'Eigene Spieler' }
+    "
+  ></ng-container>
+  <br />
+  <ng-container
+    *ngTemplateOutlet="
+      playersTemplate;
+      context: { players: game.players.away, title: 'Gegner' }
+    "
+  ></ng-container>
 </div>
 
+<ng-template #playersTemplate let-players="players" let-title="title">
+  <mat-accordion>
+    <mat-expansion-panel [expanded]="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title> {{ title }} </mat-panel-title>
+        <mat-panel-description> </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div class="mat-elevation-z8">
+        <mat-table [dataSource]="players">
+          <ng-container matColumnDef="number">
+            <mat-header-cell *matHeaderCellDef> Nummer </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              {{ element.number }}
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{ element.name }} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="actionsColumn">
+            <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <button
+                mat-raised-button
+                focusable="false"
+                [routerLink]="['detail', element.id]"
+              >
+                <mat-icon>details</mat-icon> Details
+              </button>
+            </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="9999">Keine Spiele gefunden</td>
+          </tr>
+        </mat-table>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+</ng-template>

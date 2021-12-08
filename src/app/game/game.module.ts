@@ -7,6 +7,8 @@ import { GameDetailComponent } from './game-detail/game-detail.component';
 import { SharedModule } from '../shared/shared.module';
 import { GameCreateDialogComponent } from './dialogs/game-create-dialog.component';
 import { GameObservationComponent } from './game-observation/game-observation.component';
+import {MatExpansionModule} from '@angular/material/expansion';
+
 
 
 @NgModule({
@@ -19,7 +21,8 @@ import { GameObservationComponent } from './game-observation/game-observation.co
   imports: [
     CommonModule,
     SharedModule,
-    GameRoutingModule
+    GameRoutingModule,
+    MatExpansionModule
   ]
 })
 export class GameModule { }
