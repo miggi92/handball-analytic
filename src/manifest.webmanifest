@@ -1,9 +1,9 @@
 {
-  "name": "Spielanalyse",
-  "short_name": "gameAnalysis",
+  "name": "Handball Analyse",
+  "short_name": "Handball Analyse",
   "description": "Diese Anwendung dient dazu eine Spielanalyse durchzuführen.",
-  "theme_color": "#1976d2",
-  "background_color": "#fafafa",
+  "theme_color": "#000000",
+  "background_color": "#505050",
   "display": "standalone",
   "orientation": "portrait",
   "scope": "./",
