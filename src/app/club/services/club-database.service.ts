@@ -35,6 +35,10 @@ export class ClubDatabaseService {
     );
   }
 
+  getClub(clubID: string){
+    return this.db.collection(this._collection).doc(clubID).valueChanges({idField: 'id'});
+  }
+
   async createClub(data: Club){
     const user = await this.auth.getUser();
     return this.db.collection(this._collection).add({

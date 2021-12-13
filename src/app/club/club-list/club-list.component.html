@@ -5,36 +5,51 @@
     <!-- Name Column -->
     <ng-container matColumnDef="name">
       <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+      <mat-cell *matCellDef="let element"> {{ element.name }} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="owner">
       <mat-header-cell *matHeaderCellDef> Besitzer </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.owner}} </mat-cell>
+      <mat-cell *matCellDef="let element"> {{ element.owner }} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="actionsColumn">
       <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
       <mat-cell *matCellDef="let element">
-         <button mat-raised-button  color="warn" focusable="false" (click)="deleteClub(element)">
+        <button
+          mat-raised-button
+          color="warn"
+          focusable="false"
+          (click)="deleteClub(element)"
+        >
           <mat-icon>delete</mat-icon> Remove
-         </button>
+        </button>
+        <button
+          mat-raised-button
+          focusable="false"
+          [routerLink]="['detail', element.id]"
+        >
+          <mat-icon>details</mat-icon> Details
+        </button>
       </mat-cell>
-   </ng-container>
+    </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
 
     <tr class="mat-row" *matNoDataRow>
-      <td class="mat-cell" colspan="9999">
-        Keine Vereine gefunden
-      </td>
+      <td class="mat-cell" colspan="9999">Keine Vereine gefunden</td>
     </tr>
   </mat-table>
 </div>
 
 <br />
 
-<button mat-fab color="primary" aria-label="Add a club" (click)="openClubDialog()">
+<button
+  mat-fab
+  color="primary"
+  aria-label="Add a club"
+  (click)="openClubDialog()"
+>
   <mat-icon>add</mat-icon>
 </button>
