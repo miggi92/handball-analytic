@@ -13,6 +13,7 @@ import { AngularFirePerformanceModule, PerformanceMonitoringService } from '@ang
 import { environment } from './../environments/environment';
 import { SnackService } from './services/snack.service';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { AppUpdateService } from './app-update.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
       registrationStrategy: 'registerWhenStable:30000'
     }),
   ],
-  providers: [PerformanceMonitoringService, SnackService],
+  providers: [PerformanceMonitoringService, SnackService, AppUpdateService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
