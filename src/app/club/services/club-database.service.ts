@@ -41,12 +41,18 @@ export class ClubDatabaseService {
       }),
       map((clubData) => {
         clubData.forEach((element) => {
-          this.getUserData(element);
+          this.populateClubData(element);
           return element;
         });
         return clubData;
       })
     );
+  }
+
+  private populateClubData(element: any) {
+    this.getUserData(element);
+    this.getTeamsData(element);
+    return element;
   }
 
   private getUserData(element: any) {
@@ -57,6 +63,19 @@ export class ClubDatabaseService {
         element.owner = owner.data();
       });
   }
+  private getTeamsData(club: any) {
+    if (!club.teams) {
+      return;
+    }
+    club.teams.forEach((team, index) => {
+      this.db
+        .doc(team.path)
+        .get()
+        .subscribe((snapshot) => {
+          club.teams[index] = snapshot.data();
+        });
+    });
+  }
 
   getClub(clubID: string) {
     return this.db
@@ -65,7 +84,7 @@ export class ClubDatabaseService {
       .valueChanges({ idField: 'id' })
       .pipe(
         map((club) => {
-          this.getUserData(club);
+          return this.populateClubData(club);
           return club;
         })
       );
