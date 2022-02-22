@@ -1,13 +1,33 @@
 <div *ngIf="game.players; else noPlayers">
   <div class="btn-group">
-    <button mat-raised-button>Tor</button>
-    <button mat-raised-button color="warn">Fehlwurf</button>
-    <button mat-raised-button color="warn">Technischer Fehler</button>
-    <button mat-raised-button color="warn">Pass-/ Fangfehler</button>
-    <button mat-raised-button color="warn">Fehlwurf</button>
-    <button mat-raised-button>1./ 2. Welle</button>
-    <button mat-raised-button>7m</button>
-    <button mat-raised-button color="warn">2 Minuten</button>
+    <button mat-raised-button (click)="onClickEvent('goal')">Tor</button>
+    <button mat-raised-button color="warn" (click)="onClickEvent('noGoal')">
+      Fehlwurf
+    </button>
+    <button
+      mat-raised-button
+      color="warn"
+      (click)="onClickEvent('technicalError')"
+    >
+      Technischer Fehler
+    </button>
+    <button
+      mat-raised-button
+      color="warn"
+      (click)="onClickEvent('incompletion')"
+    >
+      Pass-/ Fangfehler
+    </button>
+    <button mat-raised-button (click)="onClickEvent('fastBreak')">
+      1./ 2. Welle
+    </button>
+    <button mat-raised-button (click)="onClickEvent('penalty')">7m</button>
+    <button mat-raised-button color="warn" (click)="onClickEvent('twoMinutes')">
+      2 Minuten
+    </button>
+    <button mat-raised-button (click)="onClickEvent('goalkeeperChange')">
+      Torhüter Wechsel
+    </button>
   </div>
   <br /><br />
 
