@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { firstValueFrom, map, reduce, switchMap } from 'rxjs';
+import { Team } from 'src/app/team/models/team.model';
 import { AuthService } from 'src/app/user/services/auth.service';
 import { Club } from '../models/club.model';
 
@@ -70,6 +71,10 @@ export class ClubDatabaseService {
       );
   }
 
+  async updateClub(clubId, data: Club) {
+    return this.db.collection(this._collection).doc(clubId).update(data);
+  }
+
   async createClub(data: Club) {
     const user = await this.auth.getUser();
     return this.db.collection(this._collection).add({
@@ -80,5 +85,20 @@ export class ClubDatabaseService {
 
   deleteClub(clubId: string) {
     return this.db.collection(this._collection).doc(clubId).delete();
+  }
+
+  async createTeam(clubId, data: Team) {
+    return this.db
+      .collection('teams')
+      .add({
+        ...data,
+        club: this.db.collection(this._collection).doc(clubId).ref,
+        createdBy: this._userReference,
+      })
+      .then((team) => {
+        this.updateClub(clubId, {
+          teams: [this.db.collection('teams').doc(team.id).ref],
+        });
+      });
   }
 }

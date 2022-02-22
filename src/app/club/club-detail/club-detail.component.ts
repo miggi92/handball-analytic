@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { TeamCreateDialogComponent } from 'src/app/team/dialogs/team-create-dialog.component';
 import { Club } from '../models/club.model';
 import { ClubDatabaseService } from '../services/club-database.service';
 
@@ -16,7 +18,8 @@ export class ClubDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private clubDB: ClubDatabaseService
+    private clubDB: ClubDatabaseService,
+    public dialog: MatDialog
   ) {
     this.route.params.subscribe((params) => {
       this.clubID = params['clubId'];
@@ -32,5 +35,18 @@ export class ClubDetailComponent implements OnInit {
   ngOnDestroy() {
     this.sub.unsubscribe();
   }
-  openCreateTeamDialog() {}
+  openCreateTeamDialog() {
+    const dialogRef = this.dialog.open(TeamCreateDialogComponent, {
+      width: '400px',
+      data: {},
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.clubDB.createTeam(this.clubID, {
+          name: result,
+        });
+      }
+    });
+  }
 }
