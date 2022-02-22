@@ -3,7 +3,9 @@
 <div *ngIf="club">
   <mat-card>
     <mat-card-title>{{ club.name }}</mat-card-title>
-    <mat-card-subtitle>Erstellt von: {{ club.owner }}</mat-card-subtitle>
+    <mat-card-subtitle
+      >Erstellt von: {{ club.owner.displayName }}</mat-card-subtitle
+    >
     <mat-card-content> </mat-card-content>
   </mat-card>
 </div>

@@ -1,9 +1,10 @@
-import { Team } from "src/app/team/models/team.model";
-import { Season } from "./season.model";
+import { Team } from 'src/app/team/models/team.model';
+import { User } from 'src/app/user/models/user.model';
+import { Season } from './season.model';
 
-export interface Club{
+export interface Club {
   id?: string;
-  owner?: string;
+  owner?: User;
   name?: string;
   season?: Season[];
   teams?: Team[];

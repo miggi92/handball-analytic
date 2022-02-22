@@ -10,7 +10,9 @@
 
     <ng-container matColumnDef="owner">
       <mat-header-cell *matHeaderCellDef> Besitzer </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{ element.owner }} </mat-cell>
+      <mat-cell *matCellDef="let element">
+        {{ element.owner.displayName }}
+      </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="actionsColumn">

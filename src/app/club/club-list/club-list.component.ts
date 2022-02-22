@@ -8,19 +8,19 @@ import { ClubCreateDialogComponent } from '../dialogs/club-create-dialog.compone
 @Component({
   selector: 'app-club-list',
   templateUrl: './club-list.component.html',
-  styleUrls: ['./club-list.component.scss']
+  styleUrls: ['./club-list.component.scss'],
 })
 export class ClubListComponent implements OnInit {
   displayedColumns: string[] = ['name', 'owner', 'actionsColumn'];
   clubs: Club[] = [];
-  sub: Subscription = new Subscription;
+  sub: Subscription = new Subscription();
 
-  constructor(private clubDB: ClubDatabaseService,  public dialog: MatDialog) { }
+  constructor(private clubDB: ClubDatabaseService, public dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.sub = this.clubDB
       .getUserClubs()
-      .subscribe(clubs => (this.clubs = clubs));
+      .subscribe((clubs) => (this.clubs = clubs));
   }
 
   ngOnDestroy() {
@@ -30,22 +30,21 @@ export class ClubListComponent implements OnInit {
   openClubDialog(): void {
     const dialogRef = this.dialog.open(ClubCreateDialogComponent, {
       width: '400px',
-      data: {  }
+      data: {},
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.clubDB.createClub({
-          name: result
+          name: result,
         });
       }
     });
   }
 
-  deleteClub(club: Club){
-    if(club.id){
+  deleteClub(club: Club) {
+    if (club.id) {
       this.clubDB.deleteClub(club.id);
     }
   }
-
 }

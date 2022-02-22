@@ -1,56 +1,84 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { firstValueFrom, switchMap } from 'rxjs';
+import { firstValueFrom, map, reduce, switchMap } from 'rxjs';
 import { AuthService } from 'src/app/user/services/auth.service';
 import { Club } from '../models/club.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
 export class ClubDatabaseService {
-  _collection: string = "clubs";
+  _collection: string = 'clubs';
+  _userReference;
 
-  constructor(private auth: AuthService, private db: AngularFirestore) { }
+  constructor(private auth: AuthService, private db: AngularFirestore) {
+    this._getUserRef();
+  }
+  async _getUserRef() {
+    const user = await this.auth.getUser();
+    this._userReference = this.db.collection('users').doc(user.uid).ref;
+  }
 
-  getClubs(){
+  getClubs() {
     return this.db.collection(this._collection);
   }
 
-  getUserClubs(){
+  getUserClubs() {
     return this.auth.user$.pipe(
-      switchMap(user => {
+      switchMap((user) => {
         if (user) {
           return this.db
-            .collection<Club>(this._collection, ref =>
-              ref.where('owner', '==', user.uid).orderBy('name')
+            .collection<Club>(this._collection, (ref) =>
+              ref.where('owner', '==', this._userReference).orderBy('name')
             )
             .valueChanges({
-              idField: 'id'
+              idField: 'id',
             });
         } else {
           return [];
         }
+      }),
+      map((clubData) => {
+        clubData.forEach((element) => {
+          this.getUserData(element);
+          return element;
+        });
+        return clubData;
       })
     );
   }
 
-  getClub(clubID: string){
-    return this.db.collection(this._collection).doc(clubID).valueChanges({idField: 'id'});
+  private getUserData(element: any) {
+    this.db
+      .doc(element.owner)
+      .get()
+      .subscribe((owner) => {
+        element.owner = owner.data();
+      });
   }
 
-  async createClub(data: Club){
+  getClub(clubID: string) {
+    return this.db
+      .collection(this._collection)
+      .doc(clubID)
+      .valueChanges({ idField: 'id' })
+      .pipe(
+        map((club) => {
+          this.getUserData(club);
+          return club;
+        })
+      );
+  }
+
+  async createClub(data: Club) {
     const user = await this.auth.getUser();
     return this.db.collection(this._collection).add({
       ...data,
-      owner: user.uid
+      owner: this._userReference,
     });
   }
 
-  deleteClub(clubId: string){
-    return this.db
-      .collection(this._collection)
-      .doc(clubId)
-      .delete();
+  deleteClub(clubId: string) {
+    return this.db.collection(this._collection).doc(clubId).delete();
   }
 }

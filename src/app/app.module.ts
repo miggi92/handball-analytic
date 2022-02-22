@@ -7,19 +7,19 @@ import { SharedModule } from './shared/shared.module';
 import { HomePageComponent } from './home-page/home-page.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AngularFireModule } from '@angular/fire/compat';
-import { AngularFireAnalyticsModule  } from '@angular/fire/compat/analytics';
-import { AngularFirestoreModule  } from '@angular/fire/compat/firestore';
-import { AngularFirePerformanceModule, PerformanceMonitoringService } from '@angular/fire/compat/performance';
+import { AngularFireAnalyticsModule } from '@angular/fire/compat/analytics';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import {
+  AngularFirePerformanceModule,
+  PerformanceMonitoringService,
+} from '@angular/fire/compat/performance';
 import { environment } from './../environments/environment';
 import { SnackService } from './services/snack.service';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { AppUpdateService } from './app-update.service';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomePageComponent,
-  ],
+  declarations: [AppComponent, HomePageComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -33,10 +33,10 @@ import { AppUpdateService } from './app-update.service';
       enabled: environment.production,
       // Register the ServiceWorker as soon as the app is stable
       // or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:30000'
+      registrationStrategy: 'registerWhenStable:30000',
     }),
   ],
   providers: [PerformanceMonitoringService, SnackService, AppUpdateService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
