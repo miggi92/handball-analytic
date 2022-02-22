@@ -4,30 +4,33 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { tap } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SnackService {
-
-  constructor(private snackBar: MatSnackBar, private router: Router) { }
+  constructor(private snackBar: MatSnackBar, private router: Router) {}
 
   authError() {
     this.snackBar.open('You must be logged in!', 'OK', {
-      duration: 5000
+      duration: 5000,
     });
 
-    if(this.snackBar._openedSnackBarRef){
+    if (this.snackBar._openedSnackBarRef) {
       return this.snackBar._openedSnackBarRef
-      .onAction()
-      .pipe(
-        tap(_ =>
-          this.router.navigate(['/user/login'])
-        )
-      )
-      .subscribe();
+        .onAction()
+        .pipe(tap((_) => this.router.navigate(['/user/login'])))
+        .subscribe();
     } else {
       return null;
     }
+  }
 
+  error(msg: string) {
+    this.openSnack(msg, 'Ok!');
+  }
 
+  openSnack(msg: string, action: string) {
+    this.snackBar.open(msg, action, {
+      duration: 5000,
+    });
   }
 }
