@@ -21,7 +21,7 @@
       >
       <a
         mat-list-item
-        routerLink="/teams"
+        routerLink="/team"
         (click)="drawer.close()"
         *ngIf="auth.user$ | async as user"
         >Mannschaften</a
@@ -75,7 +75,7 @@
         <a mat-button routerLink="/club" *ngIf="auth.user$ | async as user"
           >💼 Vereine</a
         >
-        <a mat-button routerLink="/teams" *ngIf="auth.user$ | async as user"
+        <a mat-button routerLink="/team" *ngIf="auth.user$ | async as user"
           >👥 Mannschaften</a
         >
         <a mat-button routerLink="/game" *ngIf="auth.user$ | async as user"
