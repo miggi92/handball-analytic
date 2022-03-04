@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { arrayUnion } from 'firebase/firestore';
 import { firstValueFrom, map, reduce, switchMap } from 'rxjs';
 import { Team } from 'src/app/team/models/team.model';
 import { AuthService } from 'src/app/user/services/auth.service';
@@ -64,10 +65,9 @@ export class ClubDatabaseService {
       });
   }
   private getTeamsData(club: any) {
-    if (!club.teams) {
+    if (!club.teams || !Array.isArray(club.teams)) {
       return;
     }
-    console.log('test');
     club.teams.forEach((team, index) => {
       this.db
         .doc(team.path)
@@ -91,7 +91,7 @@ export class ClubDatabaseService {
       );
   }
 
-  async updateClub(clubId, data: Club) {
+  async updateClub(clubId, data: any) {
     return this.db.collection(this._collection).doc(clubId).update(data);
   }
 
@@ -117,7 +117,7 @@ export class ClubDatabaseService {
       })
       .then((team) => {
         this.updateClub(clubId, {
-          teams: [this.db.collection('teams').doc(team.id).ref],
+          teams: arrayUnion(this.db.collection('teams').doc(team.id).ref),
         });
       });
   }
