@@ -67,6 +67,7 @@ export class ClubDatabaseService {
     if (!club.teams) {
       return;
     }
+    console.log('test');
     club.teams.forEach((team, index) => {
       this.db
         .doc(team.path)
@@ -84,7 +85,7 @@ export class ClubDatabaseService {
       .valueChanges({ idField: 'id' })
       .pipe(
         map((club) => {
-          return this.populateClubData(club);
+          this.populateClubData(club);
           return club;
         })
       );

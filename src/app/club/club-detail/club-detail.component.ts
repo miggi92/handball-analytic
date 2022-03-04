@@ -15,6 +15,7 @@ export class ClubDetailComponent implements OnInit {
   club: Club;
   sub: Subscription = new Subscription();
   clubID: string;
+  displayedColumns: string[] = ['name', 'actionsColumn'];
 
   constructor(
     private route: ActivatedRoute,
