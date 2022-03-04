@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { arrayUnion } from 'firebase/firestore';
+import { map } from 'rxjs';
 import { ClubDatabaseService } from 'src/app/club/services/club-database.service';
 import { DefaultServiceService } from 'src/app/services/default-service.service';
 import { Team } from '../models/team.model';
@@ -21,6 +22,19 @@ export class TeamDatabaseService extends DefaultServiceService {
 
   getTeams() {
     return this.db.collection(this._collection);
+  }
+
+  getTeam(teamID: string) {
+    return this.db
+      .collection(this._collection)
+      .doc(teamID)
+      .valueChanges({ idField: 'id' })
+      .pipe(
+        map((team) => {
+          this.populateTeamsData(team);
+          return team;
+        })
+      );
   }
 
   async createTeam(clubId, data: Team) {
