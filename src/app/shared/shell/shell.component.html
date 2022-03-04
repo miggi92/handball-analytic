@@ -21,6 +21,13 @@
       >
       <a
         mat-list-item
+        routerLink="/teams"
+        (click)="drawer.close()"
+        *ngIf="auth.user$ | async as user"
+        >Mannschaften</a
+      >
+      <a
+        mat-list-item
         routerLink="/game"
         (click)="drawer.close()"
         *ngIf="auth.user$ | async as user"
@@ -67,6 +74,9 @@
       <div *ngIf="!(isHandset$ | async)">
         <a mat-button routerLink="/club" *ngIf="auth.user$ | async as user"
           >💼 Vereine</a
+        >
+        <a mat-button routerLink="/club" *ngIf="auth.user$ | async as user"
+          >👥 Mannschaften</a
         >
         <a mat-button routerLink="/game" *ngIf="auth.user$ | async as user"
           >🎮 Spiele</a
