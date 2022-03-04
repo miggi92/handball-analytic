@@ -1,24 +1,24 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { arrayUnion } from 'firebase/firestore';
-import { firstValueFrom, map, reduce, switchMap } from 'rxjs';
+import { map, switchMap } from 'rxjs';
+import { DefaultServiceService } from 'src/app/services/default-service.service';
 import { Team } from 'src/app/team/models/team.model';
-import { AuthService } from 'src/app/user/services/auth.service';
+import { TeamDatabaseService } from 'src/app/team/services/team-database.service';
 import { Club } from '../models/club.model';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ClubDatabaseService {
-  _collection: string = 'clubs';
-  _userReference;
+export class ClubDatabaseService extends DefaultServiceService {
+  override _collection = 'clubs';
+  private teamDB: TeamDatabaseService;
+  private static _instance: ClubDatabaseService;
 
-  constructor(private auth: AuthService, private db: AngularFirestore) {
-    this._getUserRef();
-  }
-  async _getUserRef() {
-    const user = await this.auth.getUser();
-    this._userReference = this.db.collection('users').doc(user.uid).ref;
+  public static getInstance(auth, db): ClubDatabaseService {
+    if (!this._instance) {
+      this._instance = new ClubDatabaseService(auth, db);
+    }
+    return this._instance;
   }
 
   getClubs() {
@@ -48,35 +48,6 @@ export class ClubDatabaseService {
         return clubData;
       })
     );
-  }
-
-  private populateClubData(element: any) {
-    this.getUserData(element);
-    this.getTeamsData(element);
-    return element;
-  }
-
-  private getUserData(element: any) {
-    this.db
-      .doc(element.owner)
-      .get()
-      .subscribe((owner) => {
-        element.owner = owner.data();
-      });
-  }
-  private getTeamsData(club: any) {
-    if (!club.teams || !Array.isArray(club.teams)) {
-      return;
-    }
-    club.teams.forEach((team, index) => {
-      this.db
-        .doc(team.path)
-        .get()
-        .subscribe((snapshot) => {
-          club.teams[index] = snapshot.data();
-          club.teams[index].id = snapshot.id;
-        });
-    });
   }
 
   getClub(clubID: string) {
@@ -109,17 +80,7 @@ export class ClubDatabaseService {
   }
 
   async createTeam(clubId, data: Team) {
-    return this.db
-      .collection('teams')
-      .add({
-        ...data,
-        club: this.db.collection(this._collection).doc(clubId).ref,
-        createdBy: this._userReference,
-      })
-      .then((team) => {
-        this.updateClub(clubId, {
-          teams: arrayUnion(this.db.collection('teams').doc(team.id).ref),
-        });
-      });
+    this.teamDB = TeamDatabaseService.getInstance(this.auth, this.db);
+    return this.teamDB.createTeam(clubId, data);
   }
 }
