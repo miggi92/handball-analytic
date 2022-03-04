@@ -74,6 +74,7 @@ export class ClubDatabaseService {
         .get()
         .subscribe((snapshot) => {
           club.teams[index] = snapshot.data();
+          club.teams[index].id = snapshot.id;
         });
     });
   }
