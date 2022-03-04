@@ -1,1 +1,31 @@
-<p>team-list works!</p>
+<h1>Mannschaften</h1>
+
+<div class="mat-elevation-z8">
+  <mat-table [dataSource]="teams">
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.name }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="actionsColumn">
+      <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <button
+          mat-raised-button
+          focusable="false"
+          [routerLink]="['detail', element.id]"
+        >
+          <mat-icon>details</mat-icon> Details
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="9999">Keine Mannschaften gefunden</td>
+    </tr>
+  </mat-table>
+</div>
