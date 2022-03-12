@@ -16,7 +16,7 @@ import { PlayerDatabaseService } from '../services/player-database.service';
 export class PlayerListComponent implements OnInit {
   team: Team;
   teamID;
-  displayedColumns: string[] = ['name', 'firstName'];
+  displayedColumns: string[] = ['isKeeper', 'name', 'firstName'];
   players: Player[] = [];
 
   subTeam: Subscription = new Subscription();

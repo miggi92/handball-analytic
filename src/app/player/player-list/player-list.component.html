@@ -2,6 +2,10 @@
 
 <div class="mat-elevation-z8">
   <mat-table [dataSource]="players">
+    <ng-container matColumnDef="isKeeper">
+      <mat-header-cell *matHeaderCellDef> Torhüter? </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.isKeeper }} </mat-cell>
+    </ng-container>
     <!-- Name Column -->
     <ng-container matColumnDef="name">
       <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
