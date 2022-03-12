@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Player } from 'src/app/player/models/player.model';
 import { Team } from 'src/app/team/models/team.model';
 import { TeamDatabaseService } from 'src/app/team/services/team-database.service';
+import { PlayerCreateDialogComponent } from '../dialogs/player-create-dialog.component';
 import { PlayerDatabaseService } from '../services/player-database.service';
 
 @Component({
@@ -23,7 +25,8 @@ export class PlayerListComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private teamDB: TeamDatabaseService,
-    private playerDB: PlayerDatabaseService
+    private playerDB: PlayerDatabaseService,
+    public dialog: MatDialog
   ) {
     this.route.params.subscribe((params) => {
       this.teamID = params['teamId'];
@@ -44,5 +47,16 @@ export class PlayerListComponent implements OnInit {
     this.subPlayer.unsubscribe();
   }
 
-  openPlayerCreationDialog() {}
+  openPlayerCreationDialog() {
+    const dialogRef = this.dialog.open(PlayerCreateDialogComponent, {
+      width: '400px',
+      data: {},
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.playerDB.createPlayer(this.teamID, result);
+      }
+    });
+  }
 }
