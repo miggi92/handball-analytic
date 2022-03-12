@@ -36,6 +36,9 @@ export class TeamDatabaseService extends DefaultServiceService {
         })
       );
   }
+  async updateTeam(teamId, data: any) {
+    return this.db.collection(this._collection).doc(teamId).update(data);
+  }
 
   async createTeam(clubId, data: Team) {
     this.clubDB = ClubDatabaseService.getInstance(this.auth, this.db);
