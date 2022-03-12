@@ -18,7 +18,9 @@
         <mat-card-subtitle></mat-card-subtitle>
         <mat-card-content> </mat-card-content>
         <mat-card-actions align="end">
-          <button mat-button><mat-icon>group</mat-icon> Spieler</button>
+          <button mat-button [routerLink]="['/team/' + team.id + '/players']">
+            <mat-icon>group</mat-icon> Spieler
+          </button>
           <button mat-button [routerLink]="['/team/detail', team.id]">
             <mat-icon>settings</mat-icon> Einstellungen
           </button>

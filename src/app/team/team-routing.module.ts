@@ -6,6 +6,11 @@ import { TeamListComponent } from './team-list/team-list.component';
 const routes: Routes = [
   { path: '', component: TeamListComponent },
   { path: 'detail/:teamId', component: TeamDetailComponent },
+  {
+    path: ':teamId/players',
+    loadChildren: () =>
+      import('../player/player.module').then((m) => m.PlayerModule),
+  },
 ];
 
 @NgModule({
