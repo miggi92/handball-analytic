@@ -28,6 +28,12 @@ const routes: Routes = [
     loadChildren: () => import('./team/team.module').then((m) => m.TeamModule),
     canActivate: [AuthGuard],
   },
+  {
+    path: 'player',
+    loadChildren: () =>
+      import('./player/player.module').then((m) => m.PlayerModule),
+    canActivate: [AuthGuard],
+  },
 ];
 
 @NgModule({
