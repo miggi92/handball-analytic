@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { Player } from 'src/app/game/models/player.model';
 import { Team } from 'src/app/team/models/team.model';
 import { TeamDatabaseService } from 'src/app/team/services/team-database.service';
 
@@ -12,6 +13,9 @@ import { TeamDatabaseService } from 'src/app/team/services/team-database.service
 export class PlayerListComponent implements OnInit {
   team: Team;
   teamID;
+  displayedColumns: string[] = ['name', 'actionsColumn'];
+  players: Player[];
+
   sub: Subscription = new Subscription();
 
   constructor(
