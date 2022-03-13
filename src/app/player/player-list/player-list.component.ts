@@ -67,5 +67,8 @@ export class PlayerListComponent implements OnInit {
     });
   }
 
-  changePlayerActive(checkbox: MatCheckbox) {}
+  changePlayerActive(player: Player, checkbox: MatCheckbox) {
+    player.active = checkbox.checked;
+    this.playerDB.updatePlayer(player);
+  }
 }

@@ -8,8 +8,8 @@
       <mat-cell *matCellDef="let element"
         ><mat-checkbox
           #checkBox
-          [value]="element.active"
-          (change)="changePlayerActive(checkBox)"
+          [(ngModel)]="element.active"
+          (change)="changePlayerActive(element, checkBox)"
         ></mat-checkbox>
       </mat-cell>
     </ng-container>

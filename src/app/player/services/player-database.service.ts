@@ -43,4 +43,8 @@ export class PlayerDatabaseService extends DefaultServiceService {
   private initTeamDB() {
     this.teamDB = TeamDatabaseService.getInstance(this.auth, this.db);
   }
+
+  async updatePlayer(data: Player) {
+    return this.db.collection(this._collection).doc(data.id).update(data);
+  }
 }
