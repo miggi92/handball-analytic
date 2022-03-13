@@ -2,6 +2,18 @@
 
 <div class="mat-elevation-z8">
   <mat-table [dataSource]="players">
+    <ng-container matColumnDef="active">
+      <mat-header-cell *matHeaderCellDef> Aktiv? </mat-header-cell>
+
+      <mat-cell *matCellDef="let element"
+        ><mat-checkbox
+          #checkBox
+          [value]="element.active"
+          (change)="changePlayerActive(checkBox)"
+        ></mat-checkbox>
+      </mat-cell>
+    </ng-container>
+
     <ng-container matColumnDef="isKeeper">
       <mat-header-cell *matHeaderCellDef> Torhüter? </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{ element.isKeeper }} </mat-cell>
@@ -26,6 +38,13 @@
           [routerLink]="['detail', element.id]"
         >
           <mat-icon>details</mat-icon> Details
+        </button>
+        <button
+          mat-raised-button
+          focusable="false"
+          [routerLink]="['detail', element.id]"
+        >
+          <mat-icon>multiline_chart</mat-icon> Statistik
         </button>
       </mat-cell>
     </ng-container>

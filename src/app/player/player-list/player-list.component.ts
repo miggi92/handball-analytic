@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatCheckbox } from '@angular/material/checkbox';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -16,7 +17,13 @@ import { PlayerDatabaseService } from '../services/player-database.service';
 export class PlayerListComponent implements OnInit {
   team: Team;
   teamID;
-  displayedColumns: string[] = ['isKeeper', 'name', 'firstName'];
+  displayedColumns: string[] = [
+    'active',
+    'isKeeper',
+    'name',
+    'firstName',
+    'actionsColumn',
+  ];
   players: Player[] = [];
 
   subTeam: Subscription = new Subscription();
@@ -59,4 +66,6 @@ export class PlayerListComponent implements OnInit {
       }
     });
   }
+
+  changePlayerActive(checkbox: MatCheckbox) {}
 }

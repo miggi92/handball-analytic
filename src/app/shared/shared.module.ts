@@ -20,6 +20,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 const components = [ShellComponent];
 
@@ -44,6 +45,7 @@ const modules = [
   MatDialogModule,
   FormsModule,
   MatDatepickerModule,
+  MatCheckboxModule,
 ];
 
 @NgModule({

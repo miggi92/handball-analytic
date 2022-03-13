@@ -9,10 +9,20 @@ import { Player } from '../models/player.model';
     <div mat-dialog-content>
       <p>Bitte die allgemeinen Spielerdaten ausfüllen</p>
       <mat-form-field>
-        <input placeholder="Vorname" matInput [(ngModel)]="data.firstName" />
+        <input
+          placeholder="Vorname"
+          name="firstname"
+          matInput
+          [(ngModel)]="data.firstName"
+        />
       </mat-form-field>
       <mat-form-field>
-        <input placeholder="Nachname" matInput [(ngModel)]="data.name" />
+        <input
+          placeholder="Nachname"
+          name="lastname"
+          matInput
+          [(ngModel)]="data.name"
+        />
       </mat-form-field>
       <mat-form-field>
         <mat-slide-toggle [(ngModel)]="data.isKeeper"
