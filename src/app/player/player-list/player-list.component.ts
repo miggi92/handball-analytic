@@ -27,7 +27,6 @@ export class PlayerListComponent implements OnInit {
     'active',
     'isKeeper',
     'name',
-    'firstName',
     'actionsColumn',
   ];
   players: Player[] = [];

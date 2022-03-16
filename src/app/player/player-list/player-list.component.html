@@ -10,7 +10,8 @@
           #checkBox
           [(ngModel)]="element.active"
           (change)="changePlayerActive(element, checkBox)"
-        ></mat-checkbox>
+        >
+        </mat-checkbox>
       </mat-cell>
     </ng-container>
 
@@ -27,12 +28,9 @@
     <!-- Name Column -->
     <ng-container matColumnDef="name">
       <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{ element.name }} </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="firstName">
-      <mat-header-cell *matHeaderCellDef> Vorname </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{ element.firstName }} </mat-cell>
+      <mat-cell *matCellDef="let element">
+        {{ element.firstName }} {{ element.name }}
+      </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="actionsColumn">
@@ -47,15 +45,14 @@
             <mat-icon>details</mat-icon> Details
           </button>
         </div>
-        <div>
-          <button
-            mat-raised-button
-            focusable="false"
-            [routerLink]="['detail', element.id]"
-          >
-            <mat-icon>multiline_chart</mat-icon> Statistik
-          </button>
-        </div>
+
+        <button
+          mat-raised-button
+          focusable="false"
+          [routerLink]="['detail', element.id]"
+        >
+          <mat-icon>multiline_chart</mat-icon> Statistik
+        </button>
       </mat-cell>
     </ng-container>
 
