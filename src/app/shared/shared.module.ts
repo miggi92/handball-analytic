@@ -21,11 +21,14 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { FontAwesomeModule  } from '@fortawesome/angular-fontawesome';
+
 
 const components = [ShellComponent];
 
 const modules = [
   CommonModule,
+  FontAwesomeModule,
   MatButtonModule,
   MatToolbarModule,
   MatIconModule,
@@ -53,4 +56,7 @@ const modules = [
   imports: [...modules],
   exports: [...components, ...modules],
 })
-export class SharedModule {}
+export class SharedModule {
+  constructor(){
+  }
+}

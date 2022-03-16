@@ -15,8 +15,11 @@
     </ng-container>
 
     <ng-container matColumnDef="isKeeper">
-      <mat-header-cell *matHeaderCellDef> Torhüter? </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{ element.isKeeper }} </mat-cell>
+      <mat-header-cell *matHeaderCellDef> Spielertyp </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <fa-icon *ngIf="element.isKeeper" [icon]="faKeeper"></fa-icon>
+        <fa-icon *ngIf="!element.isKeeper" [icon]="faPlayer"></fa-icon>
+      </mat-cell>
     </ng-container>
     <!-- Name Column -->
     <ng-container matColumnDef="name">

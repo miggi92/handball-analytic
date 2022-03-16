@@ -2,19 +2,21 @@ import { Component, OnInit } from '@angular/core';
 import { MatCheckbox } from '@angular/material/checkbox';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
+import { faHands, faPersonRunning } from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
 import { Player } from 'src/app/player/models/player.model';
 import { Team } from 'src/app/team/models/team.model';
 import { TeamDatabaseService } from 'src/app/team/services/team-database.service';
 import { PlayerCreateDialogComponent } from '../dialogs/player-create-dialog.component';
 import { PlayerDatabaseService } from '../services/player-database.service';
-
 @Component({
   selector: 'app-player-list',
   templateUrl: './player-list.component.html',
   styleUrls: ['./player-list.component.scss'],
 })
 export class PlayerListComponent implements OnInit {
+  faKeeper = faHands;
+  faPlayer = faPersonRunning;
   team: Team;
   teamID;
   displayedColumns: string[] = [
