@@ -15,8 +15,12 @@ import { PlayerDatabaseService } from '../services/player-database.service';
   styleUrls: ['./player-list.component.scss'],
 })
 export class PlayerListComponent implements OnInit {
-  faKeeper = faHands;
-  faPlayer = faPersonRunning;
+
+  customIcons = {
+    keeper: faHands,
+    player: faPersonRunning
+  }
+
   team: Team;
   teamID;
   displayedColumns: string[] = [

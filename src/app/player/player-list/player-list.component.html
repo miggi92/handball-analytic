@@ -17,8 +17,11 @@
     <ng-container matColumnDef="isKeeper">
       <mat-header-cell *matHeaderCellDef> Spielertyp </mat-header-cell>
       <mat-cell *matCellDef="let element">
-        <fa-icon *ngIf="element.isKeeper" [icon]="faKeeper"></fa-icon>
-        <fa-icon *ngIf="!element.isKeeper" [icon]="faPlayer"></fa-icon>
+        <fa-icon *ngIf="element.isKeeper" [icon]="customIcons.keeper"></fa-icon>
+        <fa-icon
+          *ngIf="!element.isKeeper"
+          [icon]="customIcons.player"
+        ></fa-icon>
       </mat-cell>
     </ng-container>
     <!-- Name Column -->
@@ -35,20 +38,24 @@
     <ng-container matColumnDef="actionsColumn">
       <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
       <mat-cell *matCellDef="let element">
-        <button
-          mat-raised-button
-          focusable="false"
-          [routerLink]="['detail', element.id]"
-        >
-          <mat-icon>details</mat-icon> Details
-        </button>
-        <button
-          mat-raised-button
-          focusable="false"
-          [routerLink]="['detail', element.id]"
-        >
-          <mat-icon>multiline_chart</mat-icon> Statistik
-        </button>
+        <div>
+          <button
+            mat-raised-button
+            focusable="false"
+            [routerLink]="['detail', element.id]"
+          >
+            <mat-icon>details</mat-icon> Details
+          </button>
+        </div>
+        <div>
+          <button
+            mat-raised-button
+            focusable="false"
+            [routerLink]="['detail', element.id]"
+          >
+            <mat-icon>multiline_chart</mat-icon> Statistik
+          </button>
+        </div>
       </mat-cell>
     </ng-container>
 
