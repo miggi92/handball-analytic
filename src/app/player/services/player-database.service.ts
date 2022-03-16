@@ -23,6 +23,10 @@ export class PlayerDatabaseService extends DefaultServiceService {
         idField: 'id',
       });
   }
+
+  getPlayer(playerID){
+    return this.db.collection(this._collection).doc(playerID).valueChanges({ idField: 'id' });
+  }
   async createPlayer(teamID, data: Player) {
     return this.db
       .collection(this._collection)
