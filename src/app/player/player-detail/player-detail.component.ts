@@ -33,4 +33,6 @@ customIcons = {
     this.sub.unsubscribe();
   }
 
+  onEdit(){}
+
 }
