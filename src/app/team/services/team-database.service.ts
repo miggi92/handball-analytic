@@ -64,7 +64,7 @@ export class TeamDatabaseService extends DefaultServiceService {
       })
       .then((team) => {
         this.clubDB.updateClub(clubId, {
-          teams: arrayUnion(this.db.collection('teams').doc(team.id).ref),
+          players: arrayUnion(this.db.collection('teams').doc(team.id).ref),
         });
       });
   }
