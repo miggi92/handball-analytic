@@ -13,6 +13,7 @@ import {
   AngularFirePerformanceModule,
   PerformanceMonitoringService,
 } from '@angular/fire/compat/performance';
+import { AngularFireMessagingModule } from '@angular/fire/compat/messaging';
 import { environment } from './../environments/environment';
 import { SnackService } from './services/snack.service';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -29,6 +30,7 @@ import { AppUpdateService } from './app-update.service';
     AngularFireAnalyticsModule,
     AngularFirePerformanceModule,
     AngularFirestoreModule.enablePersistence(),
+    AngularFireMessagingModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the app is stable

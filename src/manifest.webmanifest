@@ -4,7 +4,7 @@
   "description": "Diese Anwendung dient dazu eine Spielanalyse durchzuführen.",
   "theme_color": "#000000",
   "background_color": "#505050",
-  "display": "fullscreen",
+  "display": "standalone",
   "orientation": "portrait",
   "scope": "./",
   "start_url": "./?utm_source=gameAnalysis_mgm12_pwa",

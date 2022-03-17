@@ -8,4 +8,5 @@ export interface User {
     coach?: boolean
   },
   activeClub?: string;
+  fcmTokens?: { [token: string]: true };
 }

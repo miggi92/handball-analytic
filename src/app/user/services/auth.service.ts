@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import firebase from 'firebase/compat/app';
 import { firstValueFrom, Observable, of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
+import { MessagingService } from 'src/app/services/messaging.service';
 
 
 @Injectable({
@@ -16,12 +17,15 @@ export class AuthService {
 
   constructor( private afAuth: AngularFireAuth,
     private afs: AngularFirestore,
-    private router: Router) {
+    private router: Router, public msg: MessagingService) {
       // Get the auth state, then fetch the Firestore user document or return null
       this.user$ = this.afAuth.authState.pipe(
         switchMap(user => {
             // Logged in
           if (user) {
+            this.msg.getPermission(user);
+            this.msg.monitorRefresh(user);
+            this.msg.receiveMessages();
             return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
           } else {
             // Logged out
@@ -41,18 +45,10 @@ export class AuthService {
     return this.updateUserData(credential.user);
   }
 
-  private updateUserData(user: any) {
+  private updateUserData(user: User) {
     // Sets user data to firestore on login
     const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
-
-    const data: User = {
-      uid: user.uid,
-      email: user.email,
-      displayName: user.displayName,
-      photoURL: user.photoURL
-    }
-
-    return userRef.set(data, { merge: true })
+    return userRef.set(user, { merge: true })
 
   }
 
@@ -63,6 +59,7 @@ export class AuthService {
 
   public async changeActiveClub(clubID: string){
     let user = await this.getUser();
-    return this.afs.doc(`users/${user.uid}`).update({activeClub:clubID});
+    user.activeClub = clubID;
+    return this.updateUserData(user);
   }
 }

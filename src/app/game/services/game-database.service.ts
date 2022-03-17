@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { switchMap } from 'rxjs';
+import { DefaultServiceService } from 'src/app/services/default-service.service';
 import { User } from 'src/app/user/models/user.model';
 import { AuthService } from 'src/app/user/services/auth.service';
 import { Game } from '../models/game.model';
@@ -8,11 +9,8 @@ import { Game } from '../models/game.model';
 @Injectable({
   providedIn: 'root'
 })
-export class GameDatabaseService {
-  _collection: string = "games";
-
-  constructor(private auth: AuthService, private db: AngularFirestore) {
-  }
+export class GameDatabaseService extends DefaultServiceService{
+  override _collection: string = "games";
 
   getGames(){
     return this.db.collection(this._collection).valueChanges({idField: 'id'});
@@ -22,16 +20,22 @@ export class GameDatabaseService {
     return this.db.collection(this._collection).doc(gameId).valueChanges({idField: 'id'});
   }
 
-  getClubGames(clubID?: string){
-    if(!clubID){
-      clubID = '5092CgL9OaI6r9NH0pLZ';
-    }
-
-    return this.db
-      .collection<Game>(this._collection, ref => ref.where('clubId', '==', clubID))
-      .valueChanges({
-        idField: 'id'
-      });
+  getClubGames(){
+      return this.auth.user$.pipe(
+        switchMap((user) => {
+          if (user) {
+            return this.db
+              .collection<Game>(this._collection, (ref) =>
+                ref.where('clubId', '==', this.db.collection('clubs').doc(this._userData.activeClub).ref)
+                  .orderBy('name')
+              )
+              .valueChanges({
+                idField: 'id',
+              });
+          } else {
+            return [];
+          }
+        }));
   }
 
   getUserGames(){
