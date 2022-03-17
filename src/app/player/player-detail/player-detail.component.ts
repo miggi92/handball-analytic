@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { faIdBadge } from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
@@ -17,6 +18,7 @@ customIcons = {
   playerId;
   player: Player;
   sub: Subscription = new Subscription();
+  editable = false;
 
   constructor(private route: ActivatedRoute, private playerDB: PlayerDatabaseService) {
     this.route.params.subscribe((params) => {
@@ -33,6 +35,13 @@ customIcons = {
     this.sub.unsubscribe();
   }
 
-  onEdit(){}
+  onEdit(){
+    this.editable = !this.editable;
+  }
+
+  onSave(){
+    this.playerDB.updatePlayer(this.player);
+    this.onEdit();
+  }
 
 }
