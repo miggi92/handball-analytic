@@ -37,7 +37,7 @@ export class PlayerDatabaseService extends DefaultServiceService {
       .then((player) => {
         this.initTeamDB();
         this.teamDB.updateTeam(teamID, {
-          teams: arrayUnion(
+          players: arrayUnion(
             this.db.collection(this._collection).doc(player.id).ref
           ),
         });
