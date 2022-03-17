@@ -23,9 +23,9 @@ export class AuthService {
         switchMap(user => {
             // Logged in
           if (user) {
-            this.msg.getPermission(user);
-            this.msg.monitorRefresh(user);
-            this.msg.receiveMessages();
+            // this.msg.getPermission(user);
+            // this.msg.monitorRefresh(user);
+            // this.msg.receiveMessages();
             return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
           } else {
             // Logged out
@@ -42,7 +42,13 @@ export class AuthService {
   async googleSignin() {
     const provider = new firebase.auth.GoogleAuthProvider();
     const credential = await this.afAuth.signInWithPopup(provider);
-    return this.updateUserData(credential.user);
+    const data: User = {
+      uid: credential.user.uid,
+      email: credential.user.email,
+      displayName: credential.user.displayName,
+      photoURL: credential.user.photoURL
+    }
+    return this.updateUserData(data);
   }
 
   private updateUserData(user: User) {
