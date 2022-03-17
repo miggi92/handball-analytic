@@ -4,6 +4,13 @@
   <mat-card>
     <mat-card-title>{{ team.name }}</mat-card-title>
     <mat-card-subtitle></mat-card-subtitle>
-    <mat-card-content> </mat-card-content>
+    <mat-card-content>
+      <p>Anzahl der Spieler: {{ team.players.length }}</p>
+    </mat-card-content>
+    <mat-card-actions align="end">
+      <button mat-button [routerLink]="['/team/' + team.id + '/players']">
+        <mat-icon>group</mat-icon> Spieler
+      </button>
+    </mat-card-actions>
   </mat-card>
 </div>
