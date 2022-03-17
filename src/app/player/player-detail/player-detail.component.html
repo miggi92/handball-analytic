@@ -8,13 +8,17 @@
       <mat-card-subtitle></mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
+      <mat-slide-toggle [(ngModel)]="player.active" [disabled]="!editable"
+        >Spieler aktiv?</mat-slide-toggle
+      >
+      <br /><br />
       <mat-form-field appearance="fill">
         <mat-label>Nummer</mat-label>
         <input
           matInput
+          [(ngModel)]="player.number"
           [readonly]="!editable"
           [disabled]="!editable"
-          [(ngModel)]="player.number"
           type="number"
           min="1"
           max="99"
