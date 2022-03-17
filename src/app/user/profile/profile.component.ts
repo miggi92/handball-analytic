@@ -1,11 +1,10 @@
 import { environment } from '../../../environments/environment';
 import { Component, OnInit } from '@angular/core';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
-import { mergeMapTo, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { Club } from 'src/app/club/models/club.model';
 import { ClubDatabaseService } from 'src/app/club/services/club-database.service';
 import { AuthService } from '../services/auth.service';
-import { AngularFireMessaging } from '@angular/fire/compat/messaging';
 
 @Component({
   selector: 'app-profile',
@@ -17,7 +16,7 @@ export class ProfileComponent implements OnInit {
   clubs: Club[] = [];
   sub: Subscription = new Subscription();
 
-  constructor(public auth: AuthService, private clubDB: ClubDatabaseService, private afMessaging: AngularFireMessaging) {}
+  constructor(public auth: AuthService, private clubDB: ClubDatabaseService) {}
 
   ngOnInit(): void {
     this.sub = this.clubDB
@@ -31,13 +30,5 @@ export class ProfileComponent implements OnInit {
     } else {
       this.auth.changeActiveClub('');
     }
-  }
-  requestPermission() {
-    this.afMessaging.requestPermission
-      .pipe(mergeMapTo(this.afMessaging.tokenChanges))
-      .subscribe(
-        (token) => { console.log('Permission granted! Save to the server!', token); },
-        (error) => { console.error(error); },
-      );
   }
 }

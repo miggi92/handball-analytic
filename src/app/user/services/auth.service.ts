@@ -5,8 +5,7 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat
 import { Router } from '@angular/router';
 import firebase from 'firebase/compat/app';
 import { firstValueFrom, Observable, of } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
-import { MessagingService } from 'src/app/services/messaging.service';
+import { switchMap } from 'rxjs/operators';
 
 
 @Injectable({
@@ -17,15 +16,12 @@ export class AuthService {
 
   constructor( private afAuth: AngularFireAuth,
     private afs: AngularFirestore,
-    private router: Router, public msg: MessagingService) {
+    private router: Router) {
       // Get the auth state, then fetch the Firestore user document or return null
       this.user$ = this.afAuth.authState.pipe(
         switchMap(user => {
             // Logged in
           if (user) {
-            // this.msg.getPermission(user);
-            // this.msg.monitorRefresh(user);
-            // this.msg.receiveMessages();
             return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
           } else {
             // Logged out
