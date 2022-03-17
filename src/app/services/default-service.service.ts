@@ -9,6 +9,7 @@ import { AuthService } from '../user/services/auth.service';
 export class DefaultServiceService {
   _collection: string;
   _userReference;
+  _userData;
 
   constructor(protected auth: AuthService, protected db: AngularFirestore) {
     this._getUserRef();
@@ -22,6 +23,7 @@ export class DefaultServiceService {
 
   async _getUserRef() {
     const user = await this.auth.getUser();
+    this._userData = user;
     this._userReference = this.db.collection('users').doc(user.uid).ref;
   }
 
