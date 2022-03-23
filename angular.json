@@ -6,7 +6,12 @@
     "gameAnalysis": {
       "projectType": "application",
       "i18n": {
-        "sourceLocale": "en-US"
+        "sourceLocale": "en-US",
+        "locales": {
+          "de": {
+            "translation": "src/locale/messages.de.json"
+          }
+        }
       },
       "schematics": {
         "@schematics/angular:component": {
