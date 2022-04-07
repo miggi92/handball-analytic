@@ -16,7 +16,9 @@
         <app-game-observation [game]="game"></app-game-observation>
       </mat-tab>
     </div>
-    <mat-tab label="Spielbewertung"> Content 1 </mat-tab>
+    <div *ngIf="game.done">
+      <mat-tab label="Spielbewertung"> Content 1 </mat-tab>
+    </div>
     <mat-tab
       ><ng-template mat-tab-label>
         <mat-icon class="tab-icon">show_chart</mat-icon>
@@ -29,7 +31,14 @@
         <mat-icon class="tab-icon">settings</mat-icon>
         Einstellungen
       </ng-template>
-      Content 2
+      <div *ngIf="!game.done">
+        <button mat-raised-button focusable="false">
+          <mat-icon>add</mat-icon> Eigene Spieler hinzufügen
+        </button>
+        <button mat-raised-button focusable="false">
+          <mat-icon>add</mat-icon> Gegnerische Spieler hinzufügen
+        </button>
+      </div>
     </mat-tab>
   </mat-tab-group>
 </div>

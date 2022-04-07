@@ -13,10 +13,10 @@ export interface Game {
   };
   players?: {
     home: Player[];
-    opponent: Player[];
+    away: Player[];
   };
   statistics?: {
     home: Statistic[];
-    opponent: Statistic[];
+    away: Statistic[];
   };
 }

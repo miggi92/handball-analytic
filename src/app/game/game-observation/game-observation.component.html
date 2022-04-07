@@ -37,11 +37,12 @@
       context: { players: game.players.home, title: 'Eigene Spieler' }
     "
   ></ng-container>
+
   <br />
   <ng-container
     *ngTemplateOutlet="
       playersTemplate;
-      context: { players: game.players.opponent, title: 'Gegner' }
+      context: { players: game.players.away, title: 'Gegner' }
     "
   ></ng-container>
 </div>
@@ -79,7 +80,10 @@
               <button
                 mat-raised-button
                 focusable="false"
-                [routerLink]="['detail', element.id]"
+                [routerLink]="[
+                  '/team/detail/' + element.teamID + '/players/detail',
+                  element.id
+                ]"
               >
                 <mat-icon>details</mat-icon> Details
               </button>

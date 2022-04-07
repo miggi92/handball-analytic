@@ -12,7 +12,9 @@ export class GameObservationComponent implements OnInit {
 
   constructor(private snackBar: SnackService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.game);
+  }
 
   onClickEvent(eventType) {
     switch (eventType) {
