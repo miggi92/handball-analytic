@@ -1,3 +1,4 @@
-export interface Statistic{
+export interface Statistic {
   playerId?: string;
+  goals?: number;
 }

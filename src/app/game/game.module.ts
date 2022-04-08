@@ -7,22 +7,17 @@ import { GameDetailComponent } from './game-detail/game-detail.component';
 import { SharedModule } from '../shared/shared.module';
 import { GameCreateDialogComponent } from './dialogs/game-create-dialog.component';
 import { GameObservationComponent } from './game-observation/game-observation.component';
-import {MatExpansionModule} from '@angular/material/expansion';
-
-
+import { MatExpansionModule } from '@angular/material/expansion';
+import { PickPlayerDialogComponent } from './dialogs/pick-player-dialog.component';
 
 @NgModule({
   declarations: [
     GameListComponent,
     GameDetailComponent,
     GameCreateDialogComponent,
-    GameObservationComponent
+    GameObservationComponent,
+    PickPlayerDialogComponent,
   ],
-  imports: [
-    CommonModule,
-    SharedModule,
-    GameRoutingModule,
-    MatExpansionModule
-  ]
+  imports: [CommonModule, SharedModule, GameRoutingModule, MatExpansionModule],
 })
-export class GameModule { }
+export class GameModule {}

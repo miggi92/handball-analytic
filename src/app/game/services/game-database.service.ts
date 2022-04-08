@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { map, switchMap } from 'rxjs';
-import { Player } from 'src/app/player/models/player.model';
 import { DefaultServiceService } from 'src/app/services/default-service.service';
 import { Game } from '../models/game.model';
 
@@ -67,7 +66,9 @@ export class GameDatabaseService extends DefaultServiceService {
         }
       }),
       map((gameData) => {
-        // console.log(gameData);
+        gameData.forEach((game) => {
+          this.populateGame(game);
+        });
         return gameData;
       })
     );
@@ -116,16 +117,15 @@ export class GameDatabaseService extends DefaultServiceService {
     return game;
   }
 
-  private getPlayerData(player: Player) {
-    let docRef;
-    docRef = player;
-    this.db
-      .doc(docRef)
-      .get()
-      .subscribe((element) => {
-        player = element.data();
-      });
-    return player;
+  async updateGame(gameId, data) {
+    return this.db.collection(this._collection).doc(gameId).update(data);
+  }
+
+  async updateStatistics(gameId, data) {
+    return this.db
+      .collection(this._collection)
+      .doc(gameId)
+      .update({ statistics: data });
   }
 
   deleteGame(gameId: string) {
