@@ -52,52 +52,56 @@
 </ng-template>
 
 <ng-template #playersTemplate let-players="players" let-title="title">
-  <mat-accordion *ngIf="players">
-    <mat-expansion-panel [expanded]="true">
-      <mat-expansion-panel-header>
-        <mat-panel-title> {{ title }} </mat-panel-title>
-        <mat-panel-description> </mat-panel-description>
-      </mat-expansion-panel-header>
-      <div class="mat-elevation-z8">
-        <mat-table [dataSource]="players">
-          <ng-container matColumnDef="number">
-            <mat-header-cell *matHeaderCellDef> Nummer </mat-header-cell>
-            <mat-cell *matCellDef="let element">
-              {{ element.number }}
-            </mat-cell>
-          </ng-container>
+  <div *ngIf="players && players[players.length - 1].hasOwnProperty('name')">
+    <mat-accordion *ngIf="players">
+      <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title> {{ title }} </mat-panel-title>
+          <mat-panel-description> </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="mat-elevation-z8">
+          <mat-table [dataSource]="players">
+            <ng-container matColumnDef="number">
+              <mat-header-cell *matHeaderCellDef> Nummer </mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                {{ element.number }}
+              </mat-cell>
+            </ng-container>
 
-          <ng-container matColumnDef="name">
-            <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-            <mat-cell *matCellDef="let element"
-              >{{ element.firstName }} {{ element.name }}
-            </mat-cell>
-          </ng-container>
+            <ng-container matColumnDef="name">
+              <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+              <mat-cell *matCellDef="let element"
+                >{{ element.firstName }} {{ element.name }}
+              </mat-cell>
+            </ng-container>
 
-          <ng-container matColumnDef="actionsColumn">
-            <mat-header-cell *matHeaderCellDef> </mat-header-cell>
-            <mat-cell *matCellDef="let element">
-              <button
-                mat-raised-button
-                focusable="false"
-                [routerLink]="[
-                  '/team/detail/' + element.teamID + '/players/detail',
-                  element.id
-                ]"
-              >
-                <mat-icon>details</mat-icon> Details
-              </button>
-            </mat-cell>
-          </ng-container>
+            <ng-container matColumnDef="actionsColumn">
+              <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                <button
+                  mat-raised-button
+                  focusable="false"
+                  [routerLink]="[
+                    '/team/detail/' + element.teamID + '/players/detail',
+                    element.id
+                  ]"
+                >
+                  <mat-icon>details</mat-icon> Details
+                </button>
+              </mat-cell>
+            </ng-container>
 
-          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-          <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+            <mat-header-row
+              *matHeaderRowDef="displayedColumns"
+            ></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
 
-          <tr class="mat-row" *matNoDataRow>
-            <td class="mat-cell" colspan="9999">Keine Spiele gefunden</td>
-          </tr>
-        </mat-table>
-      </div>
-    </mat-expansion-panel>
-  </mat-accordion>
+            <tr class="mat-row" *matNoDataRow>
+              <td class="mat-cell" colspan="9999">Keine Spiele gefunden</td>
+            </tr>
+          </mat-table>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
 </ng-template>
