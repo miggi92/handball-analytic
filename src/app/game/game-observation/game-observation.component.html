@@ -30,15 +30,31 @@
     </button>
   </div>
   <br />
-  <div *ngIf="activeGoalkeeper">
+  <div *ngIf="game.statistics && game.statistics.activeKeeper">
     <h2>Aktive Torhüter</h2>
-    <div *ngIf="activeGoalkeeper.home">
+    <div
+      *ngIf="
+        game.statistics.activeKeeper.home &&
+        getPlayerFromID(game.statistics.activeKeeper.home)
+      "
+    >
       <p>Heim</p>
-      <button mat-raised-button>{{ activeGoalkeeper.home.number }}</button>
+      <button mat-raised-button>
+        {{ getPlayerFromID(game.statistics.activeKeeper.home).number }} -
+        {{ getPlayerFromID(game.statistics.activeKeeper.home).name }}
+      </button>
     </div>
-    <div *ngIf="activeGoalkeeper.away">
+    <div
+      *ngIf="
+        game.statistics.activeKeeper.away &&
+        getPlayerFromID(game.statistics.activeKeeper.away)
+      "
+    >
       <p>Gast</p>
-      <button mat-raised-button>{{ activeGoalkeeper.away.number }}</button>
+      <button mat-raised-button>
+        {{ getPlayerFromID(game.statistics.activeKeeper.away).number }} -
+        {{ getPlayerFromID(game.statistics.activeKeeper.away).name }}
+      </button>
     </div>
   </div>
   <br /><br />

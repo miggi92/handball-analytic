@@ -20,5 +20,9 @@ export interface Game {
     home: Statistic[];
     away: Statistic[];
     history: HistoryEntry[];
+    activeKeeper: {
+      home: string;
+      away: string;
+    };
   };
 }

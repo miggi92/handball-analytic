@@ -21,7 +21,6 @@ export class GameObservationComponent implements OnInit {
   @Input() game: Game;
   displayedColumns: string[] = ['number', 'name', 'actionsColumn'];
   historyEntry: HistoryEntry;
-  activeGoalkeeper: { home: Player; away: Player };
   eventType: EventType;
 
   constructor(
@@ -38,17 +37,17 @@ export class GameObservationComponent implements OnInit {
         home: new Array<Statistic>(),
         away: new Array<Statistic>(),
         history: new Array<HistoryEntry>(),
+        activeKeeper: {
+          home: '',
+          away: '',
+        },
       };
     }
-    switch (eventType) {
-      case EventType.goal:
-      case EventType.missed:
-        this.eventType = eventType;
-        this.openPickPlayerDialog();
-        break;
-      default:
-        this.snackBar.error(`Event "${eventType}" not implemented yet!`);
-        break;
+    if (Object.values(EventType).includes(eventType)) {
+      this.eventType = eventType;
+      this.openPickPlayerDialog();
+    } else {
+      this.snackBar.error(`Event "${eventType}" not implemented yet!`);
     }
   }
   openPickPlayerDialog() {
@@ -56,6 +55,7 @@ export class GameObservationComponent implements OnInit {
       width: 'auto',
       data: {
         game: this.game,
+        event: this.eventType,
       },
     });
 
@@ -71,5 +71,26 @@ export class GameObservationComponent implements OnInit {
         calcStats.process();
       }
     });
+  }
+  getPlayerFromID(playerId): Player {
+    let players = this.getAllPlayers();
+    if (!players) {
+      return null;
+    }
+    let player: Player = players.find((element) => element.id === playerId);
+    return player;
+  }
+
+  getAllPlayers() {
+    let players = new Array<Player>();
+    if (this.game.players) {
+      if (this.game.players.home && this.game.players.home[0].name) {
+        players = players.concat(this.game.players.home);
+      }
+      if (this.game.players.away && this.game.players.away[0].name) {
+        players = players.concat(this.game.players.away);
+      }
+    }
+    return players;
   }
 }

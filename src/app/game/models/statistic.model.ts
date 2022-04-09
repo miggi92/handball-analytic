@@ -13,6 +13,11 @@ export interface Statistic {
 export enum EventType {
   goal = 'goal',
   missed = 'noGoal',
+  twoMinutes = 'twoMinutes',
+  redCard = 'redCard',
+  technicalError = 'technicalError',
+  fastBreak = 'fastBreak',
+  changeGoalkeeper = 'goalkeeperChange',
 }
 
 export class calcStatistic {
@@ -39,6 +44,12 @@ export class calcStatistic {
 
   process() {
     if (this.selectedPlayer) {
+      if (this.eventType === EventType.changeGoalkeeper) {
+        this.game.statistics.activeKeeper[this.selectedTeam] =
+          this.selectedPlayer.id;
+        this.gameDB.updateStatistics(this.game.id, this.game.statistics);
+        return;
+      }
       let index = -1;
       var team = this.game.statistics[this.selectedTeam];
       let stats: Statistic = team.find(
@@ -79,7 +90,11 @@ export class calcStatistic {
     }
   }
 
-  private changeHPI(eventType, stats: Statistic): Statistic {
+  private changeHPI(
+    eventType,
+    stats: Statistic,
+    goal: boolean = false
+  ): Statistic {
     let valueChange;
     switch (eventType) {
       case EventType.goal:
@@ -88,7 +103,22 @@ export class calcStatistic {
       case EventType.missed:
         valueChange = -7;
         break;
-
+      case EventType.twoMinutes:
+        valueChange = -3;
+        break;
+      case EventType.redCard:
+        valueChange = -10;
+        break;
+      case EventType.technicalError:
+        valueChange = -8;
+        break;
+      case EventType.fastBreak:
+        if (goal) {
+          valueChange = 5;
+        } else {
+          valueChange = -8;
+        }
+        break;
       default:
         break;
     }

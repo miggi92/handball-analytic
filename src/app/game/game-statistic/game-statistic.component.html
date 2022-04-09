@@ -1,1 +1,74 @@
-<p>game-statistic works!</p>
+<div *ngIf="game.statistics.home">
+  <ng-container
+    *ngTemplateOutlet="
+      playersTemplate;
+      context: { players: game.statistics.home, title: 'Eigene Spieler' }
+    "
+  ></ng-container>
+  <br />
+</div>
+<br />
+
+<div *ngIf="game.statistics.away">
+  <ng-container
+    *ngTemplateOutlet="
+      playersTemplate;
+      context: { players: game.statistics.away, title: 'Gegnerische Spieler' }
+    "
+  ></ng-container>
+</div>
+
+<ng-template #playersTemplate let-players="players" let-title="title">
+  <div *ngIf="players">
+    <mat-accordion *ngIf="players">
+      <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title> {{ title }} </mat-panel-title>
+          <mat-panel-description> </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="mat-elevation-z8">
+          <mat-table [dataSource]="players" matSort>
+            <ng-container matColumnDef="player">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>
+                Spieler
+              </mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                {{ displayPlayerInfo(element.playerId) }}
+              </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="goals">
+              <mat-header-cell *matHeaderCellDef> Tore </mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                {{ element.goals }}
+              </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="missed">
+              <mat-header-cell *matHeaderCellDef> Fehlwürfe </mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                {{ element.missed }}
+              </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="hpi">
+              <mat-header-cell *matHeaderCellDef> HPI </mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                {{ element.hpi }}
+              </mat-cell>
+            </ng-container>
+
+            <mat-header-row
+              *matHeaderRowDef="displayedColumns"
+            ></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+            <tr class="mat-row" *matNoDataRow>
+              <td class="mat-cell" colspan="9999">Keine Spiele gefunden</td>
+            </tr>
+          </mat-table>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</ng-template>

@@ -1,6 +1,8 @@
+import { EventType } from './../models/statistic.model';
 import { Game } from './../models/game.model';
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Player } from 'src/app/player/models/player.model';
 
 @Component({
   selector: 'app-player-user-dialog',
@@ -11,12 +13,9 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
         <mat-tab label="Heim">
           <div *ngIf="data.game">
             <p>Spielerauswahl</p>
-            <div *ngIf="data.game.players && data.game.players.home">
+            <div *ngIf="homePlayers">
               <section>
-                <div
-                  class="button-row"
-                  *ngFor="let player of data.game.players.home"
-                >
+                <div class="button-row" *ngFor="let player of homePlayers">
                   <button
                     mat-flat-button
                     color="primary"
@@ -63,10 +62,29 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   styles: [],
 })
 export class PickPlayerDialogComponent {
+  homePlayers: Player[];
+  awayPlayers: Player[];
   constructor(
     public dialogRef: MatDialogRef<PickPlayerDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { data: any; game: Game }
-  ) {}
+    @Inject(MAT_DIALOG_DATA)
+    public data: { data: any; game: Game; event: EventType }
+  ) {
+    if (data.event === EventType.changeGoalkeeper) {
+      if (this.data.game.players.home) {
+        this.homePlayers = this.data.game.players.home.filter(
+          (player) => player.isKeeper === true
+        );
+      }
+      if (this.data.game.players.away) {
+        this.awayPlayers = this.data.game.players.away.filter(
+          (player) => player.isKeeper === true
+        );
+      }
+    } else {
+      this.homePlayers = this.data.game.players.home;
+      this.awayPlayers = this.data.game.players.away;
+    }
+  }
 
   onNoClick(): void {
     this.dialogRef.close();
