@@ -1,1 +1,36 @@
-<p>game-history works!</p>
+<div class="mat-elevation-z8">
+  <mat-table [dataSource]="game.statistics.history">
+    <ng-container matColumnDef="date">
+      <mat-header-cell *matHeaderCellDef> Datum </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        {{ element.date.toDate() | date: "dd.MM.yy HH:mm" }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="event">
+      <mat-header-cell *matHeaderCellDef> Event </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <fa-icon [icon]="convertEvent2Icon(element.event)"></fa-icon>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="team">
+      <mat-header-cell *matHeaderCellDef> Team </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.teamId }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="player">
+      <mat-header-cell *matHeaderCellDef> Spieler </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        {{ displayPlayerInfo(element.playerId) }}
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="9999">Kein Verlauf gefunden</td>
+    </tr>
+  </mat-table>
+</div>
