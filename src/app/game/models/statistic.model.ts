@@ -27,6 +27,7 @@ export class calcStatistic {
   selectedTeam: string;
   historyEntry: HistoryEntry;
   gameDB: GameDatabaseService;
+  keeperStats: Statistic;
 
   constructor(
     selectedPlayer: Player,
@@ -55,6 +56,8 @@ export class calcStatistic {
       let stats: Statistic = team.find(
         (element) => element.playerId === this.selectedPlayer.id
       );
+      this.getKeeper();
+
       if (stats) {
         index = team.indexOf(stats);
       } else {
@@ -90,18 +93,46 @@ export class calcStatistic {
     }
   }
 
+  private getKeeper() {
+    let id;
+    if (
+      this.selectedTeam === 'home' &&
+      this.game.statistics.away &&
+      this.game.statistics.activeKeeper.away
+    ) {
+      this.keeperStats = this.game.statistics.away.find(
+        (element) => element.playerId === this.game.statistics.activeKeeper.away
+      );
+      id = this.game.statistics.activeKeeper.away;
+    } else if (
+      this.game.statistics.home &&
+      this.game.statistics.activeKeeper.home
+    ) {
+      this.keeperStats = this.game.statistics.home.find(
+        (element) => element.playerId === this.game.statistics.activeKeeper.home
+      );
+      id = this.game.statistics.activeKeeper.home;
+    }
+    if (!this.keeperStats && id) {
+      this.initPlayerStat(this.selectedPlayer.id);
+    }
+  }
+
   private changeHPI(
     eventType,
     stats: Statistic,
     goal: boolean = false
   ): Statistic {
     let valueChange;
+    let keeperValue;
     switch (eventType) {
       case EventType.goal:
         valueChange = 6;
+        keeperValue = -2;
         break;
       case EventType.missed:
         valueChange = -7;
+        keeperValue = 8;
         break;
       case EventType.twoMinutes:
         valueChange = -3;
@@ -115,8 +146,10 @@ export class calcStatistic {
       case EventType.fastBreak:
         if (goal) {
           valueChange = 5;
+          keeperValue = -2;
         } else {
           valueChange = -8;
+          keeperValue = 8;
         }
         break;
       default:
@@ -126,6 +159,9 @@ export class calcStatistic {
       return stats;
     }
     stats.hpi = stats.hpi + valueChange;
+    if (this.keeperStats && keeperValue) {
+      this.keeperStats.hpi = this.keeperStats.hpi + keeperValue;
+    }
     return stats;
   }
 
