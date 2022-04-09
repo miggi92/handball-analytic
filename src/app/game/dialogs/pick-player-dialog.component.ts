@@ -31,14 +31,33 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
             </div>
           </div>
         </mat-tab>
-        <mat-tab label="Auswärts"> Content 2 </mat-tab>
+        <mat-tab label="Auswärts"
+          ><div *ngIf="data.game">
+            <p>Spielerauswahl</p>
+            <div *ngIf="data.game.players && data.game.players.away">
+              <section>
+                <div
+                  class="button-row"
+                  *ngFor="let player of data.game.players.away"
+                >
+                  <button
+                    mat-flat-button
+                    color="accent"
+                    (click)="onPlayerClick('away', player)"
+                    cdkFocusInitial
+                  >
+                    {{ player.number }} - {{ player.firstName }}
+                    {{ player.name }}
+                  </button>
+                </div>
+              </section>
+            </div>
+          </div></mat-tab
+        >
       </mat-tab-group>
     </div>
     <div mat-dialog-actions>
       <button mat-button (click)="onNoClick()">Cancel</button>
-      <button mat-button [mat-dialog-close]="data" cdkFocusInitial>
-        Create
-      </button>
     </div>
   `,
   styles: [],
