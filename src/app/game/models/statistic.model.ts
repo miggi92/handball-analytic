@@ -9,6 +9,7 @@ export interface Statistic {
   missed?: number;
   getGoal?: number;
   saved?: number;
+  incompletion?: number;
   hpi?: number;
 }
 
@@ -20,6 +21,7 @@ export enum EventType {
   technicalError = 'technicalError',
   fastBreak = 'fastBreak',
   changeGoalkeeper = 'goalkeeperChange',
+  incompletion = 'incompletion',
 }
 
 export class calcStatistic {
@@ -99,15 +101,14 @@ export class calcStatistic {
     switch (this.eventType) {
       case EventType.goal:
         keeper.getGoal++;
-        this.changeHPI(this.eventType, keeper);
         break;
       case EventType.missed:
         keeper.saved++;
-        this.changeHPI(this.eventType, keeper);
         break;
       default:
-        break;
+        return;
     }
+    this.changeHPI(this.eventType, keeper);
     if (index !== -1) {
       team[index] = keeper;
     } else {
@@ -136,15 +137,17 @@ export class calcStatistic {
     switch (this.eventType) {
       case EventType.goal:
         stats.goals++;
-        this.changeHPI(this.eventType, stats);
         break;
       case EventType.missed:
         stats.missed++;
-        this.changeHPI(this.eventType, stats);
+        break;
+      case EventType.incompletion:
+        stats.incompletion++;
         break;
       default:
-        break;
+        return;
     }
+    this.changeHPI(this.eventType, stats);
     if (index !== -1) {
       team[index] = stats;
     } else {
@@ -187,9 +190,11 @@ export class calcStatistic {
       case EventType.redCard:
         valueChange = -10;
         break;
+      case EventType.incompletion:
       case EventType.technicalError:
         valueChange = -8;
         break;
+
       case EventType.fastBreak:
         if (goal) {
           valueChange = 5;
@@ -216,6 +221,9 @@ export class calcStatistic {
       playerId: playerId,
       goals: 0,
       missed: 0,
+      incompletion: 0,
+      getGoal: 0,
+      saved: 0,
       hpi: 100,
     };
   }

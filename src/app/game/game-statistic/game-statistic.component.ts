@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Player } from 'src/app/player/models/player.model';
 import { Game } from '../models/game.model';
 
@@ -10,7 +10,13 @@ import { Game } from '../models/game.model';
 export class GameStatisticComponent implements OnInit {
   @Input() game: Game;
   players: Player[];
-  displayedColumns: string[] = ['player', 'goals', 'missed', 'hpi'];
+  displayedColumns: string[] = [
+    'player',
+    'hpi',
+    'goals',
+    'missed',
+    'incompletion',
+  ];
   constructor() {
     this.players = new Array<Player>();
   }

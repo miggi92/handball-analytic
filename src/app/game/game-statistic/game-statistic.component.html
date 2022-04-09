@@ -27,11 +27,9 @@
           <mat-panel-description> </mat-panel-description>
         </mat-expansion-panel-header>
         <div class="mat-elevation-z8">
-          <mat-table [dataSource]="players" matSort>
+          <mat-table [dataSource]="players">
             <ng-container matColumnDef="player">
-              <mat-header-cell *matHeaderCellDef mat-sort-header>
-                Spieler
-              </mat-header-cell>
+              <mat-header-cell *matHeaderCellDef> Spieler </mat-header-cell>
               <mat-cell *matCellDef="let element">
                 {{ displayPlayerInfo(element.playerId) }}
               </mat-cell>
@@ -48,6 +46,15 @@
               <mat-header-cell *matHeaderCellDef> Fehlwürfe </mat-header-cell>
               <mat-cell *matCellDef="let element">
                 {{ element.missed }}
+              </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="incompletion">
+              <mat-header-cell *matHeaderCellDef>
+                Pas-/Fangfehler
+              </mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                {{ element.incompletion }}
               </mat-cell>
             </ng-container>
 
