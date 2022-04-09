@@ -40,14 +40,7 @@
         <mat-icon class="tab-icon">settings</mat-icon>
         Einstellungen
       </ng-template>
-      <div *ngIf="!game.done">
-        <button mat-raised-button focusable="false">
-          <mat-icon>add</mat-icon> Eigene Spieler hinzufügen
-        </button>
-        <button mat-raised-button focusable="false">
-          <mat-icon>add</mat-icon> Gegnerische Spieler hinzufügen
-        </button>
-      </div>
+      <app-game-settings [game]="game"></app-game-settings>
     </mat-tab>
   </mat-tab-group>
 </div>

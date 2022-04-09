@@ -11,6 +11,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { PickPlayerDialogComponent } from './dialogs/pick-player-dialog.component';
 import { GameHistoryComponent } from './game-history/game-history.component';
 import { GameStatisticComponent } from './game-statistic/game-statistic.component';
+import { GameSettingsComponent } from './game-settings/game-settings.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { GameStatisticComponent } from './game-statistic/game-statistic.componen
     PickPlayerDialogComponent,
     GameHistoryComponent,
     GameStatisticComponent,
+    GameSettingsComponent,
   ],
   imports: [CommonModule, SharedModule, GameRoutingModule, MatExpansionModule],
 })
