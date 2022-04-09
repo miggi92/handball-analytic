@@ -29,6 +29,18 @@
       Torhüter Wechsel
     </button>
   </div>
+  <br />
+  <div *ngIf="activeGoalkeeper">
+    <h2>Aktive Torhüter</h2>
+    <div *ngIf="activeGoalkeeper.home">
+      <p>Heim</p>
+      <button mat-raised-button>{{ activeGoalkeeper.home.number }}</button>
+    </div>
+    <div *ngIf="activeGoalkeeper.away">
+      <p>Gast</p>
+      <button mat-raised-button>{{ activeGoalkeeper.away.number }}</button>
+    </div>
+  </div>
   <br /><br />
 
   <ng-container

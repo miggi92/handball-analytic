@@ -9,6 +9,7 @@ import { GameCreateDialogComponent } from './dialogs/game-create-dialog.componen
 import { GameObservationComponent } from './game-observation/game-observation.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { PickPlayerDialogComponent } from './dialogs/pick-player-dialog.component';
+import { GameHistoryComponent } from './game-history/game-history.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { PickPlayerDialogComponent } from './dialogs/pick-player-dialog.componen
     GameCreateDialogComponent,
     GameObservationComponent,
     PickPlayerDialogComponent,
+    GameHistoryComponent,
   ],
   imports: [CommonModule, SharedModule, GameRoutingModule, MatExpansionModule],
 })

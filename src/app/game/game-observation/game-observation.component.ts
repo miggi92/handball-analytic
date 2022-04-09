@@ -1,4 +1,9 @@
-import { Statistic } from './../models/statistic.model';
+import { HistoryEntry } from './../models/history.model';
+import {
+  Statistic,
+  calcStatistic,
+  EventType,
+} from './../models/statistic.model';
 import { Player } from './../../player/models/player.model';
 import { Game } from './../models/game.model';
 import { Component, Input, OnInit } from '@angular/core';
@@ -15,10 +20,9 @@ import { GameDatabaseService } from '../services/game-database.service';
 export class GameObservationComponent implements OnInit {
   @Input() game: Game;
   displayedColumns: string[] = ['number', 'name', 'actionsColumn'];
-  selectedPlayer: Player;
-  selectedTeam;
-  eventType;
+  historyEntry: HistoryEntry;
   activeGoalkeeper: { home: Player; away: Player };
+  eventType: EventType;
 
   constructor(
     private snackBar: SnackService,
@@ -33,14 +37,15 @@ export class GameObservationComponent implements OnInit {
       this.game.statistics = {
         home: new Array<Statistic>(),
         away: new Array<Statistic>(),
+        history: new Array<HistoryEntry>(),
       };
     }
     switch (eventType) {
-      case 'goal':
+      case EventType.goal:
+      case EventType.missed:
         this.eventType = eventType;
         this.openPickPlayerDialog();
         break;
-
       default:
         this.snackBar.error(`Event "${eventType}" not implemented yet!`);
         break;
@@ -56,38 +61,15 @@ export class GameObservationComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.selectedPlayer = result.data.player;
-        this.selectedTeam = result.data.team;
-        this.processStatistic();
+        let calcStats = new calcStatistic(
+          result.data.player,
+          result.data.team,
+          this.eventType,
+          this.game,
+          this.gameDB
+        );
+        calcStats.process();
       }
     });
-  }
-  processStatistic() {
-    switch (this.eventType) {
-      case 'goal':
-        if (this.selectedPlayer) {
-          var team = this.game.statistics[this.selectedTeam];
-          const found: Statistic = team.find(
-            (element) => element.playerId === this.selectedPlayer.id
-          );
-          if (found) {
-            let index = team.indexOf(found);
-            found.goals++;
-            team[index] = found;
-          } else {
-            var stats: Statistic = {
-              playerId: this.selectedPlayer.id,
-              goals: 1,
-            };
-            team.push(stats);
-          }
-          this.game.statistics[this.selectedTeam] = team;
-          this.gameDB.updateStatistics(this.game.id, this.game.statistics);
-        }
-        break;
-
-      default:
-        break;
-    }
   }
 }

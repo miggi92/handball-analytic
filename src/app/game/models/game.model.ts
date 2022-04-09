@@ -1,4 +1,5 @@
 import { Player } from '../../player/models/player.model';
+import { HistoryEntry } from './history.model';
 import { Statistic } from './statistic.model';
 
 export interface Game {
@@ -18,5 +19,6 @@ export interface Game {
   statistics?: {
     home: Statistic[];
     away: Statistic[];
+    history: HistoryEntry[];
   };
 }

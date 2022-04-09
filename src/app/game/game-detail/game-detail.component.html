@@ -11,13 +11,22 @@
       <mat-tab>
         <ng-template mat-tab-label>
           <mat-icon class="tab-icon">remove_red_eye</mat-icon>
-          Spielbeobachtung
+          Beobachtung
         </ng-template>
         <app-game-observation [game]="game"></app-game-observation>
       </mat-tab>
     </div>
     <div *ngIf="game.done">
-      <mat-tab label="Spielbewertung"> Content 1 </mat-tab>
+      <mat-tab label="Bewertung"> Content 1 </mat-tab>
+    </div>
+    <div *ngIf="game.statistics && game.statistics.history">
+      <mat-tab
+        ><ng-template mat-tab-label>
+          <mat-icon class="tab-icon">history</mat-icon>
+          Verlauf
+        </ng-template>
+        <app-game-history [game]="game"></app-game-history>
+      </mat-tab>
     </div>
     <mat-tab
       ><ng-template mat-tab-label>
