@@ -46,6 +46,10 @@ export class GameStatisticComponent implements OnInit {
     }
   }
 
+  calculateAverage(team, value) {
+    return this.calculateTotal(team, value) / this.game.statistics[team].length;
+  }
+
   calculateTotal(team, value) {
     return this.game.statistics[team].reduce(
       (accum, curr) => accum + curr[value],

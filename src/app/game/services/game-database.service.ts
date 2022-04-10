@@ -21,9 +21,27 @@ export class GameDatabaseService extends DefaultServiceService {
       .pipe(
         map((game) => {
           this.populateGame(game);
+          this.sortStatistics(game);
           return game;
         })
       );
+  }
+  sortStatistics(game) {
+    if (game['statistics'] && game['statistics']['history']) {
+      game['statistics']['history'] = game['statistics']['history'].sort(
+        (a: any, b: any) => {
+          let bd = this.objToDate(b.date);
+          let ad = this.objToDate(a.date);
+          return +bd - +ad;
+        }
+      );
+    }
+  }
+  objToDate(obj) {
+    let result = new Date(0);
+    result.setSeconds(obj.seconds);
+    result.setMilliseconds(obj.nanoseconds / 1000000);
+    return result;
   }
 
   getClubGames() {

@@ -33,7 +33,12 @@
   let-team="team"
 >
   <div *ngIf="players">
-    <mat-accordion *ngIf="players">
+    <mat-accordion
+      *ngIf="
+        players[players.length - 1] &&
+        players[players.length - 1].hasOwnProperty('playerId')
+      "
+    >
       <mat-expansion-panel [expanded]="true">
         <mat-expansion-panel-header>
           <mat-panel-title> {{ title }} </mat-panel-title>
@@ -71,7 +76,7 @@
 
             <ng-container matColumnDef="incompletion">
               <mat-header-cell *matHeaderCellDef>
-                Pas-/Fangfehler
+                Pass-/Fangfehler
               </mat-header-cell>
               <mat-cell *matCellDef="let element">
                 {{ element.incompletion }}
@@ -86,7 +91,9 @@
               <mat-cell *matCellDef="let element">
                 {{ element.hpi }}
               </mat-cell>
-              <mat-footer-cell *matFooterCellDef></mat-footer-cell>
+              <mat-footer-cell *matFooterCellDef>
+                ø {{ calculateAverage(team, "hpi") }}</mat-footer-cell
+              >
             </ng-container>
 
             <mat-header-row
@@ -99,7 +106,7 @@
             ></mat-footer-row>
 
             <tr class="mat-row" *matNoDataRow>
-              <td class="mat-cell" colspan="9999">Keine Spiele gefunden</td>
+              <td class="mat-cell" colspan="9999">Keine Statistik gefunden</td>
             </tr>
           </mat-table>
         </div>
