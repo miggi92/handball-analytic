@@ -2,7 +2,11 @@
   <ng-container
     *ngTemplateOutlet="
       playersTemplate;
-      context: { players: game.statistics.home, title: 'Eigene Spieler' }
+      context: {
+        players: game.statistics.home,
+        title: 'Eigene Spieler',
+        team: 'home'
+      }
     "
   ></ng-container>
   <br />
@@ -13,12 +17,21 @@
   <ng-container
     *ngTemplateOutlet="
       playersTemplate;
-      context: { players: game.statistics.away, title: 'Gegnerische Spieler' }
+      context: {
+        players: game.statistics.away,
+        title: 'Gegnerische Spieler',
+        team: 'away'
+      }
     "
   ></ng-container>
 </div>
 
-<ng-template #playersTemplate let-players="players" let-title="title">
+<ng-template
+  #playersTemplate
+  let-players="players"
+  let-title="title"
+  let-team="team"
+>
   <div *ngIf="players">
     <mat-accordion *ngIf="players">
       <mat-expansion-panel [expanded]="true">
@@ -33,6 +46,7 @@
               <mat-cell *matCellDef="let element">
                 {{ displayPlayerInfo(element.playerId) }}
               </mat-cell>
+              <mat-footer-cell *matFooterCellDef></mat-footer-cell>
             </ng-container>
 
             <ng-container matColumnDef="goals">
@@ -40,6 +54,9 @@
               <mat-cell *matCellDef="let element">
                 {{ element.goals }}
               </mat-cell>
+              <mat-footer-cell *matFooterCellDef>
+                {{ calculateTotal(team, "goals") }}</mat-footer-cell
+              >
             </ng-container>
 
             <ng-container matColumnDef="missed">
@@ -47,6 +64,9 @@
               <mat-cell *matCellDef="let element">
                 {{ element.missed }}
               </mat-cell>
+              <mat-footer-cell *matFooterCellDef>
+                {{ calculateTotal(team, "missed") }}</mat-footer-cell
+              >
             </ng-container>
 
             <ng-container matColumnDef="incompletion">
@@ -56,6 +76,9 @@
               <mat-cell *matCellDef="let element">
                 {{ element.incompletion }}
               </mat-cell>
+              <mat-footer-cell *matFooterCellDef>
+                {{ calculateTotal(team, "incompletion") }}</mat-footer-cell
+              >
             </ng-container>
 
             <ng-container matColumnDef="hpi">
@@ -63,12 +86,17 @@
               <mat-cell *matCellDef="let element">
                 {{ element.hpi }}
               </mat-cell>
+              <mat-footer-cell *matFooterCellDef></mat-footer-cell>
             </ng-container>
 
             <mat-header-row
               *matHeaderRowDef="displayedColumns"
             ></mat-header-row>
             <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+            <mat-footer-row
+              class="sticky-footer"
+              *matFooterRowDef="displayedColumns"
+            ></mat-footer-row>
 
             <tr class="mat-row" *matNoDataRow>
               <td class="mat-cell" colspan="9999">Keine Spiele gefunden</td>

@@ -45,4 +45,11 @@ export class GameStatisticComponent implements OnInit {
       }
     }
   }
+
+  calculateTotal(team, value) {
+    return this.game.statistics[team].reduce(
+      (accum, curr) => accum + curr[value],
+      0
+    );
+  }
 }
