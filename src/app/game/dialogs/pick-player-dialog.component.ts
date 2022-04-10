@@ -10,47 +10,40 @@ import { Player } from 'src/app/player/models/player.model';
     <h1 mat-dialog-title>Spielerauswahl</h1>
     <div mat-dialog-content>
       <mat-tab-group>
-        <mat-tab label="Heim">
-          <div *ngIf="data.game">
-            <p>Spielerauswahl</p>
-            <div *ngIf="homePlayers">
-              <section>
-                <div class="button-row" *ngFor="let player of homePlayers">
-                  <button
-                    mat-flat-button
-                    color="primary"
-                    (click)="onPlayerClick('home', player)"
-                    cdkFocusInitial
-                  >
-                    {{ player.number }} - {{ player.firstName }}
-                    {{ player.name }}
-                  </button>
-                </div>
-              </section>
-            </div>
+        <mat-tab label="Heim" *ngIf="homePlayers">
+          <p>Spielerauswahl</p>
+          <div>
+            <section>
+              <div class="button-row" *ngFor="let player of homePlayers">
+                <button
+                  mat-flat-button
+                  color="primary"
+                  (click)="onPlayerClick('home', player)"
+                  cdkFocusInitial
+                >
+                  {{ player.number }} - {{ player.firstName }}
+                  {{ player.name }}
+                </button>
+              </div>
+            </section>
           </div>
         </mat-tab>
-        <mat-tab label="Auswärts"
-          ><div *ngIf="data.game">
-            <p>Spielerauswahl</p>
-            <div *ngIf="data.game.players && data.game.players.away">
-              <section>
-                <div
-                  class="button-row"
-                  *ngFor="let player of data.game.players.away"
+        <mat-tab label="Auswärts" *ngIf="awayPlayers">
+          <p>Spielerauswahl</p>
+          <div>
+            <section>
+              <div class="button-row" *ngFor="let player of awayPlayers">
+                <button
+                  mat-flat-button
+                  color="accent"
+                  (click)="onPlayerClick('away', player)"
+                  cdkFocusInitial
                 >
-                  <button
-                    mat-flat-button
-                    color="accent"
-                    (click)="onPlayerClick('away', player)"
-                    cdkFocusInitial
-                  >
-                    {{ player.number }} - {{ player.firstName }}
-                    {{ player.name }}
-                  </button>
-                </div>
-              </section>
-            </div>
+                  {{ player.number }} - {{ player.firstName }}
+                  {{ player.name }}
+                </button>
+              </div>
+            </section>
           </div></mat-tab
         >
       </mat-tab-group>
@@ -67,22 +60,27 @@ export class PickPlayerDialogComponent {
   constructor(
     public dialogRef: MatDialogRef<PickPlayerDialogComponent>,
     @Inject(MAT_DIALOG_DATA)
-    public data: { data: any; game: Game; event: EventType }
+    public data: {
+      data: any;
+      homePlayers: Player[];
+      awayPlayers: Player[];
+      event: EventType;
+    }
   ) {
     if (data.event === EventType.changeGoalkeeper) {
-      if (this.data.game.players.home) {
-        this.homePlayers = this.data.game.players.home.filter(
+      if (this.data.homePlayers) {
+        this.homePlayers = this.data.homePlayers.filter(
           (player) => player.isKeeper === true
         );
       }
-      if (this.data.game.players.away) {
-        this.awayPlayers = this.data.game.players.away.filter(
+      if (this.data.awayPlayers) {
+        this.awayPlayers = this.data.awayPlayers.filter(
           (player) => player.isKeeper === true
         );
       }
     } else {
-      this.homePlayers = this.data.game.players.home;
-      this.awayPlayers = this.data.game.players.away;
+      this.homePlayers = this.data.homePlayers;
+      this.awayPlayers = this.data.awayPlayers;
     }
   }
 

@@ -54,7 +54,8 @@ export class GameObservationComponent implements OnInit {
     const dialogRef = this.dialog.open(PickPlayerDialogComponent, {
       width: 'auto',
       data: {
-        game: this.game,
+        homePlayers: this.game.players.home,
+        awayPlayers: this.game.players.away,
         event: this.eventType,
       },
     });

@@ -16,6 +16,9 @@ export class GameStatisticComponent implements OnInit {
     'goals',
     'missed',
     'incompletion',
+    'technicalError',
+    'twoMinutes',
+    'redCard',
   ];
   constructor() {
     this.players = new Array<Player>();

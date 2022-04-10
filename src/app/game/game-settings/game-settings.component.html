@@ -1,10 +1,7 @@
 <div *ngIf="!game.done">
   <div class="button-row">
-    <button mat-raised-button focusable="false">
-      <mat-icon>add</mat-icon> Eigene Spieler hinzufügen
-    </button>
-    <button mat-raised-button focusable="false">
-      <mat-icon>add</mat-icon> Gegnerische Spieler hinzufügen
+    <button mat-raised-button focusable="false" (click)="addPlayer()">
+      <mat-icon>add</mat-icon> Spieler zuordnen
     </button>
   </div>
 </div>

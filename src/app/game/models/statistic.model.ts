@@ -10,6 +10,9 @@ export interface Statistic {
   getGoal?: number;
   saved?: number;
   incompletion?: number;
+  technicalError?: number;
+  twoMinutes?: number;
+  redCard?: number;
   hpi?: number;
 }
 
@@ -49,9 +52,14 @@ export class calcStatistic {
   process() {
     if (this.selectedPlayer) {
       if (this.eventType === EventType.changeGoalkeeper) {
-        this.game.statistics.activeKeeper[this.selectedTeam] =
-          this.selectedPlayer.id;
-        this.gameDB.updateStatistics(this.game.id, this.game.statistics);
+        if (
+          this.game.statistics.activeKeeper[this.selectedTeam] !==
+          this.selectedPlayer.id
+        ) {
+          this.game.statistics.activeKeeper[this.selectedTeam] =
+            this.selectedPlayer.id;
+          this.updateHistory(this.selectedTeam, this.selectedPlayer.id);
+        }
         return;
       }
 
@@ -144,6 +152,15 @@ export class calcStatistic {
       case EventType.incompletion:
         stats.incompletion++;
         break;
+      case EventType.technicalError:
+        stats.technicalError++;
+        break;
+      case EventType.twoMinutes:
+        stats.twoMinutes++;
+        break;
+      case EventType.redCard:
+        stats.redCard++;
+        break;
       default:
         return;
     }
@@ -222,8 +239,11 @@ export class calcStatistic {
       goals: 0,
       missed: 0,
       incompletion: 0,
+      technicalError: 0,
       getGoal: 0,
       saved: 0,
+      redCard: 0,
+      twoMinutes: 0,
       hpi: 100,
     };
   }

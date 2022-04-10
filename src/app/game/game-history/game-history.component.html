@@ -11,6 +11,7 @@
       <mat-header-cell *matHeaderCellDef> Event </mat-header-cell>
       <mat-cell *matCellDef="let element">
         <fa-icon [icon]="convertEvent2Icon(element.event)"></fa-icon>
+        - {{ element.event }}
       </mat-cell>
     </ng-container>
 

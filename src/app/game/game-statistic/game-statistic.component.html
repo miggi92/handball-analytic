@@ -86,6 +86,38 @@
               >
             </ng-container>
 
+            <ng-container matColumnDef="twoMinutes">
+              <mat-header-cell *matHeaderCellDef> 2 min </mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                {{ element.twoMinutes }}
+              </mat-cell>
+              <mat-footer-cell *matFooterCellDef>
+                {{ calculateTotal(team, "twoMinutes") }}</mat-footer-cell
+              >
+            </ng-container>
+
+            <ng-container matColumnDef="redCard">
+              <mat-header-cell *matHeaderCellDef> Rot </mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                {{ element.redCard }}
+              </mat-cell>
+              <mat-footer-cell *matFooterCellDef>
+                {{ calculateTotal(team, "redCard") }}</mat-footer-cell
+              >
+            </ng-container>
+
+            <ng-container matColumnDef="technicalError">
+              <mat-header-cell *matHeaderCellDef>
+                Techn. Fehler
+              </mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                {{ element.technicalError }}
+              </mat-cell>
+              <mat-footer-cell *matFooterCellDef>
+                {{ calculateTotal(team, "technicalError") }}</mat-footer-cell
+              >
+            </ng-container>
+
             <ng-container matColumnDef="hpi">
               <mat-header-cell *matHeaderCellDef> HPI </mat-header-cell>
               <mat-cell *matCellDef="let element">
