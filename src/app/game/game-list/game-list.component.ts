@@ -27,7 +27,6 @@ export class GameListComponent implements OnInit {
 
   ngOnInit(): void {
     this.sub = this.gameDB.getClubGames().subscribe((games) => {
-      console.log('games', games);
       this.games = games;
     });
     this.teamDB.getTeams().subscribe((teams) => (this.teams = teams));
