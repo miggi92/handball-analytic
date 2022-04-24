@@ -12,6 +12,9 @@
         >Spieler aktiv?</mat-slide-toggle
       >
       <br /><br />
+      <mat-slide-toggle [(ngModel)]="player.isKeeper" [disabled]="!editable"
+        >Torhüter?</mat-slide-toggle
+      ><br /><br />
       <mat-form-field appearance="fill">
         <mat-label>Nummer</mat-label>
         <input
