@@ -149,11 +149,12 @@ export class GameDatabaseService extends DefaultServiceService {
   }
 
   async addPlayer2Team(gameId, team, player) {
-    let id: string = 'players.' && team;
+    let id: string = 'players.';
+    id += team;
     return this.db
       .collection(this._collection)
       .doc(gameId)
-      .set({
+      .update({
         [id]: arrayUnion(this.db.collection('players').doc(player.id).ref),
       });
   }
