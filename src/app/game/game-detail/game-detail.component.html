@@ -2,7 +2,7 @@
 
 <div *ngIf="game">
   <mat-card>
-    <mat-card-title>Gegner: {{ game.teams.away }}</mat-card-title>
+    <mat-card-title>Gegner: {{ game.teams.away["name"] }}</mat-card-title>
     <mat-card-subtitle>{{ game.date }}</mat-card-subtitle>
     <mat-card-content> </mat-card-content>
   </mat-card>

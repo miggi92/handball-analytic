@@ -53,9 +53,21 @@ export class GameSettingsComponent implements OnInit {
     let awayPlayers;
     if (this.homeTeamPlayers) {
       homePlayers = this.homeTeamPlayers;
+      homePlayers = homePlayers.filter((item) => {
+        if (this.game.players.home.filter((e) => e.id === item.id).length > 0) {
+          return false;
+        }
+        return true;
+      });
     }
     if (this.awayTeamPlayers) {
       awayPlayers = this.awayTeamPlayers;
+      awayPlayers = awayPlayers.filter((item) => {
+        if (this.game.players.away.filter((e) => e.id === item.id).length > 0) {
+          return false;
+        }
+        return true;
+      });
     }
     const dialogRef = this.dialog.open(PickPlayerDialogComponent, {
       width: 'auto',
