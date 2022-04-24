@@ -15,20 +15,14 @@ import { PlayerDatabaseService } from '../services/player-database.service';
   styleUrls: ['./player-list.component.scss'],
 })
 export class PlayerListComponent implements OnInit {
-
   customIcons = {
     keeper: faHands,
-    player: faPersonRunning
-  }
+    player: faPersonRunning,
+  };
 
   team: Team;
   teamID;
-  displayedColumns: string[] = [
-    'active',
-    'isKeeper',
-    'name',
-    'actionsColumn',
-  ];
+  displayedColumns: string[] = ['active', 'isKeeper', 'name', 'actionsColumn'];
   players: Player[] = [];
 
   subTeam: Subscription = new Subscription();
@@ -61,7 +55,7 @@ export class PlayerListComponent implements OnInit {
 
   openPlayerCreationDialog() {
     const dialogRef = this.dialog.open(PlayerCreateDialogComponent, {
-      width: '400px',
+      width: 'auto',
       data: {},
     });
 

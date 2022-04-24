@@ -2,7 +2,7 @@
 
 <div *ngIf="game">
   <mat-card>
-    <mat-card-title>Gegner: {{ game.opponent }}</mat-card-title>
+    <mat-card-title>Gegner: {{ game.teams.away }}</mat-card-title>
     <mat-card-subtitle>{{ game.date }}</mat-card-subtitle>
     <mat-card-content> </mat-card-content>
   </mat-card>
@@ -28,7 +28,7 @@
         <app-game-history [game]="game"></app-game-history>
       </mat-tab>
     </div>
-    <mat-tab
+    <mat-tab *ngIf="game.statistics"
       ><ng-template mat-tab-label>
         <mat-icon class="tab-icon">show_chart</mat-icon>
         Statistik

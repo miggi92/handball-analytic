@@ -1,4 +1,6 @@
+import { TeamDatabaseService } from './../../team/services/team-database.service';
 import { Injectable } from '@angular/core';
+import { arrayUnion } from 'firebase/firestore';
 import { map, switchMap } from 'rxjs';
 import { DefaultServiceService } from 'src/app/services/default-service.service';
 import { Game } from '../models/game.model';
@@ -92,10 +94,17 @@ export class GameDatabaseService extends DefaultServiceService {
     );
   }
 
-  async createGame(data: Game) {
+  async createGame(data) {
     const user = await this.auth.getUser();
+    let game = data;
+    if (data.teams.home) {
+      game.teams.home = this.db.collection('teams').doc(data.teams.home).ref;
+    }
+    // if (data.teams.away) {
+    //   game.teams.away = this.db.collection('teams').doc(data.teams.away).ref;
+    // }
     return this.db.collection(this._collection).add({
-      ...data,
+      ...game,
       done: false,
       clubId: this.db.collection('clubs').doc(user.activeClub).ref,
       created: {
@@ -137,6 +146,16 @@ export class GameDatabaseService extends DefaultServiceService {
 
   async updateGame(gameId, data) {
     return this.db.collection(this._collection).doc(gameId).update(data);
+  }
+
+  async addPlayer2Team(gameId, team, player) {
+    let id: string = 'players.' && team;
+    return this.db
+      .collection(this._collection)
+      .doc(gameId)
+      .set({
+        [id]: arrayUnion(this.db.collection('players').doc(player.id).ref),
+      });
   }
 
   async updateStatistics(gameId, data) {

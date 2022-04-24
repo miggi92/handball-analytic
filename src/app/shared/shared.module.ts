@@ -21,8 +21,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { FontAwesomeModule  } from '@fortawesome/angular-fontawesome';
-
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { MatSelectModule } from '@angular/material/select';
 
 const components = [ShellComponent];
 
@@ -49,6 +49,7 @@ const modules = [
   FormsModule,
   MatDatepickerModule,
   MatCheckboxModule,
+  MatSelectModule,
 ];
 
 @NgModule({
@@ -57,6 +58,5 @@ const modules = [
   exports: [...components, ...modules],
 })
 export class SharedModule {
-  constructor(){
-  }
+  constructor() {}
 }
