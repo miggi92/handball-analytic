@@ -1,13 +1,10 @@
 import { GameDatabaseService } from './../services/game-database.service';
 import { PlayerDatabaseService } from './../../player/services/player-database.service';
-import { TeamDatabaseService } from 'src/app/team/services/team-database.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PickPlayerDialogComponent } from '../dialogs/pick-player-dialog.component';
 import { Game } from '../models/game.model';
-import { calcStatistic } from '../models/statistic.model';
-import { Team } from 'src/app/team/models/team.model';
-import { Player } from 'src/app/player/models/player.model';
+import { Player } from 'app/player/models/player.model';
 
 @Component({
   selector: 'app-game-settings',
