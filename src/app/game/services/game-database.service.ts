@@ -2,7 +2,7 @@ import { TeamDatabaseService } from './../../team/services/team-database.service
 import { Injectable } from '@angular/core';
 import { arrayUnion } from 'firebase/firestore';
 import { map, switchMap } from 'rxjs';
-import { DefaultServiceService } from 'src/app/services/default-service.service';
+import { DefaultServiceService } from 'app/services/default-service.service';
 import { Game } from '../models/game.model';
 
 @Injectable({

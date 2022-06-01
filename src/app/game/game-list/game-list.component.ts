@@ -1,4 +1,4 @@
-import { Game } from 'src/app/game/models/game.model';
+import { Game } from 'app/game/models/game.model';
 import { TeamDatabaseService } from './../../team/services/team-database.service';
 import { ClubDatabaseService } from './../../club/services/club-database.service';
 import { Component, OnInit } from '@angular/core';
@@ -6,7 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { GameCreateDialogComponent } from '../dialogs/game-create-dialog.component';
 import { GameDatabaseService } from '../services/game-database.service';
-import { Team } from 'src/app/team/models/team.model';
+import { Team } from 'app/team/models/team.model';
 
 @Component({
   selector: 'app-game-list',

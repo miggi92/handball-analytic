@@ -1,4 +1,4 @@
-import { Player } from 'src/app/player/models/player.model';
+import { Player } from 'app/player/models/player.model';
 import { GameDatabaseService } from '../services/game-database.service';
 import { Game } from './game.model';
 import { HistoryEntry } from './history.model';

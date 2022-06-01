@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { arrayUnion } from 'firebase/firestore';
 import { map, switchMap } from 'rxjs';
-import { DefaultServiceService } from 'src/app/services/default-service.service';
-import { Team } from 'src/app/team/models/team.model';
-import { TeamDatabaseService } from 'src/app/team/services/team-database.service';
+import { DefaultServiceService } from 'app/services/default-service.service';
+import { Team } from 'app/team/models/team.model';
+import { TeamDatabaseService } from 'app/team/services/team-database.service';
 import { Club } from '../models/club.model';
 
 @Injectable({

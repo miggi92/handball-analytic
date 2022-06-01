@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { arrayUnion } from 'firebase/firestore';
 import { map, switchMap } from 'rxjs';
-import { ClubDatabaseService } from 'src/app/club/services/club-database.service';
-import { DefaultServiceService } from 'src/app/services/default-service.service';
+import { ClubDatabaseService } from 'app/club/services/club-database.service';
+import { DefaultServiceService } from 'app/services/default-service.service';
 import { Team } from '../models/team.model';
 
 @Injectable({
@@ -26,7 +26,13 @@ export class TeamDatabaseService extends DefaultServiceService {
         if (user) {
           return this.db
             .collection<Team>(this._collection, (ref) =>
-              ref.where('club', '==', this.db.collection('clubs').doc(this._userData.activeClub).ref).orderBy('name')
+              ref
+                .where(
+                  'club',
+                  '==',
+                  this.db.collection('clubs').doc(this._userData.activeClub).ref
+                )
+                .orderBy('name')
             )
             .valueChanges({
               idField: 'id',
@@ -34,7 +40,8 @@ export class TeamDatabaseService extends DefaultServiceService {
         } else {
           return [];
         }
-      }));
+      })
+    );
   }
 
   getTeam(teamID: string) {

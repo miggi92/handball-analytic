@@ -2,8 +2,8 @@ import { environment } from '../../../environments/environment';
 import { Component, OnInit } from '@angular/core';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { Subscription } from 'rxjs';
-import { Club } from 'src/app/club/models/club.model';
-import { ClubDatabaseService } from 'src/app/club/services/club-database.service';
+import { Club } from 'app/club/models/club.model';
+import { ClubDatabaseService } from 'app/club/services/club-database.service';
 import { AuthService } from '../services/auth.service';
 
 @Component({

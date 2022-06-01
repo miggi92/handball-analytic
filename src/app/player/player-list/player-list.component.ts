@@ -4,9 +4,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { faHands, faPersonRunning } from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
-import { Player } from 'src/app/player/models/player.model';
-import { Team } from 'src/app/team/models/team.model';
-import { TeamDatabaseService } from 'src/app/team/services/team-database.service';
+import { Player } from 'app/player/models/player.model';
+import { Team } from 'app/team/models/team.model';
+import { TeamDatabaseService } from 'app/team/services/team-database.service';
 import { PlayerCreateDialogComponent } from '../dialogs/player-create-dialog.component';
 import { PlayerDatabaseService } from '../services/player-database.service';
 @Component({

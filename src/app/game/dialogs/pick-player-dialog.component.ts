@@ -2,7 +2,7 @@ import { EventType } from './../models/statistic.model';
 import { Game } from './../models/game.model';
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Player } from 'src/app/player/models/player.model';
+import { Player } from 'app/player/models/player.model';
 
 @Component({
   selector: 'app-player-user-dialog',

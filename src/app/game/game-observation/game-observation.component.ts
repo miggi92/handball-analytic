@@ -7,7 +7,7 @@ import {
 import { Player } from './../../player/models/player.model';
 import { Game } from './../models/game.model';
 import { Component, Input, OnInit } from '@angular/core';
-import { SnackService } from 'src/app/services/snack.service';
+import { SnackService } from 'app/services/snack.service';
 import { MatDialog } from '@angular/material/dialog';
 import { PickPlayerDialogComponent } from '../dialogs/pick-player-dialog.component';
 import { GameDatabaseService } from '../services/game-database.service';

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { DefaultServiceService } from 'src/app/services/default-service.service';
+import { DefaultServiceService } from 'app/services/default-service.service';
 import { Player } from '../models/player.model';
-import { TeamDatabaseService } from 'src/app/team/services/team-database.service';
+import { TeamDatabaseService } from 'app/team/services/team-database.service';
 import { arrayUnion } from 'firebase/firestore';
 
 @Injectable({
@@ -24,8 +24,11 @@ export class PlayerDatabaseService extends DefaultServiceService {
       });
   }
 
-  getPlayer(playerID){
-    return this.db.collection(this._collection).doc(playerID).valueChanges({ idField: 'id' });
+  getPlayer(playerID) {
+    return this.db
+      .collection(this._collection)
+      .doc(playerID)
+      .valueChanges({ idField: 'id' });
   }
   async createPlayer(teamID, data: Player) {
     return this.db

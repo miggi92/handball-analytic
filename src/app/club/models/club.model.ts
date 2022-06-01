@@ -1,5 +1,5 @@
-import { Team } from 'src/app/team/models/team.model';
-import { User } from 'src/app/user/models/user.model';
+import { Team } from 'app/team/models/team.model';
+import { User } from 'app/user/models/user.model';
 import { Season } from './season.model';
 
 export interface Club {

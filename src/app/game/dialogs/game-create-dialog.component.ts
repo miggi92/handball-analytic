@@ -1,6 +1,6 @@
 import { Component, Inject, NgModule } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Team } from 'src/app/team/models/team.model';
+import { Team } from 'app/team/models/team.model';
 import { Game } from '../models/game.model';
 
 @Component({

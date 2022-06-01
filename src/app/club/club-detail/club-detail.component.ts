@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { TeamCreateDialogComponent } from 'src/app/team/dialogs/team-create-dialog.component';
+import { TeamCreateDialogComponent } from 'app/team/dialogs/team-create-dialog.component';
 import { Club } from '../models/club.model';
 import { ClubDatabaseService } from '../services/club-database.service';
 
