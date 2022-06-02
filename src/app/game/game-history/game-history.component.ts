@@ -50,6 +50,9 @@ export class GameHistoryComponent implements OnInit {
       (element) => element.id === playerId
     );
     if (player) {
+      if (!player.number) {
+        return `${player.firstName} ${player.name}`;
+      }
       return `${player.number} - ${player.firstName} ${player.name}`;
     } else {
       return playerId;

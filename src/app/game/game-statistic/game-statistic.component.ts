@@ -32,6 +32,9 @@ export class GameStatisticComponent implements OnInit {
       (element) => element.id === playerId
     );
     if (player) {
+      if (!player.number) {
+        return `${player.firstName} ${player.name}`;
+      }
       return `${player.number} - ${player.firstName} ${player.name}`;
     } else {
       return playerId;
@@ -40,10 +43,16 @@ export class GameStatisticComponent implements OnInit {
 
   initPlayers() {
     if (this.game.players && this.players.length === 0) {
-      if (this.game.players.home && this.game.players.home[0].name) {
+      if (
+        this.game.players.home &&
+        this.game.players.home[this.game.players.home.length - 1].name
+      ) {
         this.players = this.players.concat(this.game.players.home);
       }
-      if (this.game.players.away && this.game.players.away[0].name) {
+      if (
+        this.game.players.away &&
+        this.game.players.away[this.game.players.away.length - 1].name
+      ) {
         this.players = this.players.concat(this.game.players.away);
       }
     }
