@@ -11,5 +11,5 @@ jobs:
         with:
           repo-token: "${{ secrets.GITHUB_TOKEN }}"
           enable-versioned-regex: 0
-          configuration-path: .github/labeler.yml
+          configuration-path: .github/issue-labeler.yml
           include-title: 1
