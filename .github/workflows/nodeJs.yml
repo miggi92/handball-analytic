@@ -36,3 +36,9 @@ jobs:
         with:
           name: test-results
           path: testResults/TESTS.xml
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: "${{ secrets.GITHUB_TOKEN }}"
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}"
+          projectId: "gameanalysis-mgm12"
+          channelId: live
