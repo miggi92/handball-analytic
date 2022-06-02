@@ -2,7 +2,3 @@
 test:
   - src/**/*.spec.js
   - src/**/*.spec.ts
-
-# Add/remove 'critical' label if issue contains the words 'urgent' or 'critical'
-critical:
-  - "(critical|urgent)"
