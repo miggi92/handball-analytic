@@ -1,9 +1,8 @@
 name: "Test Report"
 on:
   workflow_run:
-    workflows: ["CI"] # runs after CI workflow
-    types:
-      - completed
+    workflows: ["Node.js CI"] # runs after CI workflow
+    types: ["completed"]
 jobs:
   report:
     runs-on: ubuntu-latest
