@@ -1,5 +1,7 @@
 # GameAnalysis
 
+[![Node.js CI](https://github.com/miggi92/handball-analytic/actions/workflows/nodeJs.yml/badge.svg?branch=master)](https://github.com/miggi92/handball-analytic/actions/workflows/nodeJs.yml)
+
 ## Usage
 
 ## Development
