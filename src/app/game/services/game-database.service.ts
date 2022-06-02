@@ -63,7 +63,17 @@ export class GameDatabaseService extends DefaultServiceService {
             )
             .valueChanges({
               idField: 'id',
-            });
+            })
+            .pipe(
+              map((games) => {
+                games.forEach((element) => {
+                  this.populateTeam(element);
+                  this.populateGame(element);
+                  this.sortStatistics(element);
+                });
+                return games;
+              })
+            );
         } else {
           return [];
         }
