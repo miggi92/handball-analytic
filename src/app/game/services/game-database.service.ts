@@ -22,6 +22,7 @@ export class GameDatabaseService extends DefaultServiceService {
       .valueChanges({ idField: 'id' })
       .pipe(
         map((game) => {
+          this.populateTeam(game);
           this.populateGame(game);
           this.sortStatistics(game);
           return game;
@@ -62,7 +63,17 @@ export class GameDatabaseService extends DefaultServiceService {
             )
             .valueChanges({
               idField: 'id',
-            });
+            })
+            .pipe(
+              map((games) => {
+                games.forEach((element) => {
+                  this.populateTeam(element);
+                  this.populateGame(element);
+                  this.sortStatistics(element);
+                });
+                return games;
+              })
+            );
         } else {
           return [];
         }
@@ -113,33 +124,59 @@ export class GameDatabaseService extends DefaultServiceService {
       },
     });
   }
+  populateTeam(game: Game) {
+    if (!game.teams) {
+      return game;
+    }
+    let docRef;
+    if (game.teams.home) {
+      docRef = game.teams.home;
+      this.db
+        .doc(docRef.path)
+        .get()
+        .subscribe((snapshot) => {
+          game.teams.home = snapshot.data();
+        });
+    }
+    if (game.teams.away) {
+      docRef = game.teams.home;
+      this.db
+        .doc(docRef.path)
+        .get()
+        .subscribe((snapshot) => {
+          game.teams.away = snapshot.data();
+        });
+    }
+    return game;
+  }
 
   populateGame(game: Game) {
-    if (game.players) {
-      if (game.players.home) {
-        game.players.home.forEach((homePlayer, index) => {
-          let docRef;
-          docRef = homePlayer;
-          this.db
-            .doc(docRef.path)
-            .get()
-            .subscribe((snapshot) => {
-              game.players.home[index] = snapshot.data();
-            });
-        });
-      }
-      if (game.players.away) {
-        game.players.away.forEach((opponentPlayer, index) => {
-          let docRef;
-          docRef = opponentPlayer;
-          this.db
-            .doc(docRef.path)
-            .get()
-            .subscribe((snapshot) => {
-              game.players.away[index] = snapshot.data();
-            });
-        });
-      }
+    if (!game.players) {
+      return game;
+    }
+    if (game.players.home) {
+      game.players.home.forEach((homePlayer, index) => {
+        let docRef;
+        docRef = homePlayer;
+        this.db
+          .doc(docRef.path)
+          .get()
+          .subscribe((snapshot) => {
+            game.players.home[index] = snapshot.data();
+          });
+      });
+    }
+    if (game.players.away) {
+      game.players.away.forEach((opponentPlayer, index) => {
+        let docRef;
+        docRef = opponentPlayer;
+        this.db
+          .doc(docRef.path)
+          .get()
+          .subscribe((snapshot) => {
+            game.players.away[index] = snapshot.data();
+          });
+      });
     }
     return game;
   }

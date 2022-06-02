@@ -36,7 +36,8 @@ export class TeamDatabaseService extends DefaultServiceService {
             )
             .valueChanges({
               idField: 'id',
-            });
+            })
+            .pipe(map((teams) => {}));
         } else {
           return [];
         }

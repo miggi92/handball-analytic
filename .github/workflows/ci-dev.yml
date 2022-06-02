@@ -41,4 +41,4 @@ jobs:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_GAMEANALYSIS_MGM12 }}"
           projectId: gameanalysis-mgm12
-          expires: 30d
+          expires: 14d

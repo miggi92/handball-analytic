@@ -1,3 +1,4 @@
+import { Team } from 'app/team/models/team.model';
 import { DocumentReference } from '@angular/fire/compat/firestore';
 import { Player } from '../../player/models/player.model';
 import { HistoryEntry } from './history.model';
@@ -13,8 +14,8 @@ export interface Game {
     at: Date;
   };
   teams?: {
-    home?: DocumentReference;
-    away?: DocumentReference;
+    home?: Team;
+    away?: Team;
   };
   players?: {
     home: Player[];

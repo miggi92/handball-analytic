@@ -12,38 +12,34 @@ import { Player } from 'app/player/models/player.model';
       <mat-tab-group>
         <mat-tab label="Heim" *ngIf="homePlayers">
           <p>Spielerauswahl</p>
-          <div>
-            <section>
-              <div class="button-row" *ngFor="let player of homePlayers">
-                <button
-                  mat-flat-button
-                  color="primary"
-                  (click)="onPlayerClick('home', player)"
-                  cdkFocusInitial
-                >
-                  {{ player.number }} - {{ player.firstName }}
-                  {{ player.name }}
-                </button>
-              </div>
-            </section>
+          <div class="button-grid">
+            <div *ngFor="let player of homePlayers">
+              <button
+                mat-flat-button
+                color="primary"
+                (click)="onPlayerClick('home', player)"
+                cdkFocusInitial
+              >
+                {{ player.number }} - {{ player.firstName }}
+                {{ player.name }}
+              </button>
+            </div>
           </div>
         </mat-tab>
         <mat-tab label="Auswärts" *ngIf="awayPlayers">
           <p>Spielerauswahl</p>
-          <div>
-            <section>
-              <div class="button-row" *ngFor="let player of awayPlayers">
-                <button
-                  mat-flat-button
-                  color="accent"
-                  (click)="onPlayerClick('away', player)"
-                  cdkFocusInitial
-                >
-                  {{ player.number }} - {{ player.firstName }}
-                  {{ player.name }}
-                </button>
-              </div>
-            </section>
+          <div class="button-grid">
+            <div *ngFor="let player of awayPlayers">
+              <button
+                mat-flat-button
+                color="accent"
+                (click)="onPlayerClick('away', player)"
+                cdkFocusInitial
+              >
+                {{ player.number }} - {{ player.firstName }}
+                {{ player.name }}
+              </button>
+            </div>
           </div></mat-tab
         >
       </mat-tab-group>
