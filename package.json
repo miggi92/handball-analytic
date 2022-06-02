@@ -36,7 +36,7 @@
     "@angular/compiler-cli": "13.3.11",
     "@angular/localize": "13.3.11",
     "esbuild": "^0.14.42",
-    "jasmine-core": "~3.10.0",
+    "jasmine-core": "~4.1.1",
     "karma": "~6.3.0",
     "karma-chrome-launcher": "~3.1.0",
     "karma-coverage": "~2.0.3",
