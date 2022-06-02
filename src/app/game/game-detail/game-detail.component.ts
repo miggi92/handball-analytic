@@ -24,9 +24,10 @@ export class GameDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.sub = this.gameDB
-      .getGame(this.gameID)
-      .subscribe((game) => (this.game = game));
+    this.sub = this.gameDB.getGame(this.gameID).subscribe((game) => {
+      this.game = game;
+      console.log(this.game);
+    });
   }
 
   ngOnDestroy() {

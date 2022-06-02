@@ -25,22 +25,14 @@ export class GameSettingsComponent implements OnInit {
   ngOnInit(): void {
     if (this.game.teams) {
       if (this.game.teams.home) {
-        this.game.teams.home
-          .get()
-          .then((teamDoc) =>
-            this.playerDB
-              .getPlayers(teamDoc.id)
-              .subscribe((players) => (this.homeTeamPlayers = players))
-          );
+        this.playerDB
+          .getPlayers(this.game.teams.home.id)
+          .subscribe((players) => (this.homeTeamPlayers = players));
       }
       if (this.game.teams.away) {
-        this.game.teams.away
-          .get()
-          .then((teamDoc) =>
-            this.playerDB
-              .getPlayers(teamDoc.id)
-              .subscribe((players) => (this.awayTeamPlayers = players))
-          );
+        this.playerDB
+          .getPlayers(this.game.teams.away.id)
+          .subscribe((players) => (this.awayTeamPlayers = players));
       }
     }
   }
