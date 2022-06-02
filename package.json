@@ -29,7 +29,6 @@
     "firebase": "^9.8.2",
     "rxfire": "^6.0.3",
     "rxjs": "~7.4.0",
-    "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
@@ -37,8 +36,6 @@
     "@angular/cli": "~13.0.4",
     "@angular/compiler-cli": "~13.0.0",
     "@angular/localize": "^13.0.3",
-    "@types/jasmine": "~3.10.0",
-    "@types/node": "^12.11.1",
     "esbuild": "^0.14.42",
     "jasmine-core": "~3.10.0",
     "karma": "~6.3.0",
