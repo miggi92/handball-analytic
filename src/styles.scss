@@ -56,3 +56,13 @@ section {
 .button-row .mat-button-base {
   margin: 8px 8px 8px 0;
 }
+
+.button-grid {
+  display: grid;
+  grid-template-columns: 200px 200px 200px 200px 200px;
+  width: auto;
+}
+
+.button-grid .mat-button-base {
+  margin: 8px 8px 8px 0;
+}
