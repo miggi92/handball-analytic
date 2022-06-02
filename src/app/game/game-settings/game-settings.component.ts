@@ -51,7 +51,9 @@ export class GameSettingsComponent implements OnInit {
     if (this.homeTeamPlayers) {
       homePlayers = this.homeTeamPlayers;
       homePlayers = homePlayers.filter((item) => {
-        if (this.game.players.home.filter((e) => e.id === item.id).length > 0) {
+        if (
+          this.game.players.home?.filter((e) => e.id === item.id).length > 0
+        ) {
           return false;
         }
         return true;
@@ -60,7 +62,9 @@ export class GameSettingsComponent implements OnInit {
     if (this.awayTeamPlayers) {
       awayPlayers = this.awayTeamPlayers;
       awayPlayers = awayPlayers.filter((item) => {
-        if (this.game.players.away.filter((e) => e.id === item.id).length > 0) {
+        if (
+          this.game.players.away?.filter((e) => e.id === item.id).length > 0
+        ) {
           return false;
         }
         return true;
