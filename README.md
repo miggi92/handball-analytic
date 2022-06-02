@@ -1,6 +1,6 @@
 # GameAnalysis
 
-[![Node.js CI](https://github.com/miggi92/handball-analytic/actions/workflows/nodeJs.yml/badge.svg?branch=master)](https://github.com/miggi92/handball-analytic/actions/workflows/nodeJs.yml)
+[![CI Prod](https://github.com/miggi92/handball-analytic/actions/workflows/ci-prod.yml/badge.svg)](https://github.com/miggi92/handball-analytic/actions/workflows/ci-prod.yml)
 [![CI Dev](https://github.com/miggi92/handball-analytic/actions/workflows/ci-dev.yml/badge.svg)](https://github.com/miggi92/handball-analytic/actions/workflows/ci-dev.yml)
 
 ## Usage
