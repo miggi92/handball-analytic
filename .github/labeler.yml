@@ -2,3 +2,6 @@
 test:
   - src/**/*.spec.js
   - src/**/*.spec.ts
+
+translation:
+  - src/assets/i18n/*
