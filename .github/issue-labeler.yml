@@ -3,4 +3,4 @@ critical:
   - "(critical|urgent)"
 
 translation:
-  - "(translate|translation)"
+  - "(translate|translation|translations)"
