@@ -1,6 +1,12 @@
 {
   "name": "game-analysis",
-  "version": "1.0.1",
+  "version": "1.0.2",
+  "author": {
+    "email": "miguel@mgm12.de",
+    "name": "Miguel Gebhardt",
+    "url": "https://mgm12.dev"
+  },
+  "homepage": "https://handball-stats.mgm12.dev/",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -12,7 +18,7 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "13.3.11",
-    "@angular/cdk": "^13.0.3",
+    "@angular/cdk": "^14.0.1",
     "@angular/common": "13.3.11",
     "@angular/compiler": "13.3.11",
     "@angular/core": "13.3.11",
