@@ -23,7 +23,26 @@
             </mat-list-item>
           </mat-list>
         </mat-tab>
-        <mat-tab label="Einstellungen"> </mat-tab>
+        <mat-tab label="{{ 'Settings' | translate }}">
+          <form>
+            <mat-form-field appearance="fill">
+              <mat-label>{{ "Language" | translate }}</mat-label>
+              <mat-select
+                matNativeControl
+                value="{{ user.language }}"
+                (selectionChange)="changeLanguage($event)"
+              >
+                <mat-option value="" selected></mat-option>
+                <mat-option
+                  *ngFor="let language of translate.getLangs()"
+                  [value]="language"
+                >
+                  {{ language }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </form>
+        </mat-tab>
         <mat-tab label="Infos">
           <form>
             <mat-form-field appearance="fill">

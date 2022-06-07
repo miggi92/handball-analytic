@@ -12,6 +12,8 @@ export class AppComponent {
     private pwaUpdate: AppUpdateService,
     translate: TranslateService
   ) {
+    // Register translation languages
+    translate.addLangs(['en', 'de']);
     // this language will be used as a fallback when a translation isn't found in the current language
     translate.setDefaultLang('en');
 
