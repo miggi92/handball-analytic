@@ -1,14 +1,23 @@
 {
   "name": "Handball analytic",
   "short_name": "Handball",
-  "description": "Diese Anwendung dient dazu eine Spielanalyse durchzuführen.",
+  "description": "An website to track and manage statistics.",
   "theme_color": "#000000",
-  "background_color": "#505050",
+  "background_color": "#FFFF",
   "display": "standalone",
   "orientation": "portrait",
   "scope": "./",
   "start_url": "./?utm_source=gameAnalysis_mgm12_pwa",
   "gcm_sender_id": "15625157278",
+  "shortcuts": [
+    {
+      "name": "Game list",
+      "short_name": "Games",
+      "description": "Show the games",
+      "url": "/game?source=pwa",
+      "icons": [{ "src": "/assets/shortcuts/game.png", "sizes": "192x192" }]
+    }
+  ],
   "icons": [
     {
       "src": "assets/icons/icon-72x72.png",
