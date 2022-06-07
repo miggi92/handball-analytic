@@ -23,6 +23,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatSelectModule } from '@angular/material/select';
+import { TranslateModule } from '@ngx-translate/core';
 
 const components = [ShellComponent];
 
@@ -50,6 +51,7 @@ const modules = [
   MatDatepickerModule,
   MatCheckboxModule,
   MatSelectModule,
+  TranslateModule,
 ];
 
 @NgModule({
