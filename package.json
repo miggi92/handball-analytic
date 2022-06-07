@@ -1,6 +1,12 @@
 {
   "name": "game-analysis",
-  "version": "1.0.1",
+  "version": "1.0.2",
+  "author": {
+    "email": "miguel@mgm12.de",
+    "name": "Miguel Gebhardt",
+    "url": "https://mgm12.dev"
+  },
+  "homepage": "https://handball-stats.mgm12.dev/",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
