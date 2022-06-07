@@ -1,4 +1,11 @@
 {
   "Menu": "Menu",
-  "Home": "Home"
+  "Home": "Home",
+  "AppTitle": "Game Analysis",
+  "Clubs": "Clubs",
+  "Teams": "Teams",
+  "Games": "Games",
+  "Imprint": "Imprint",
+  "Privacy": "Privacy",
+  "Login": "Login"
 }
