@@ -7,7 +7,11 @@ import { SharedModule } from './shared/shared.module';
 import { HomePageComponent } from './home-page/home-page.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AngularFireModule } from '@angular/fire/compat';
-import { AngularFireAnalyticsModule } from '@angular/fire/compat/analytics';
+import {
+  AngularFireAnalyticsModule,
+  ScreenTrackingService,
+  UserTrackingService,
+} from '@angular/fire/compat/analytics';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import {
   AngularFirePerformanceModule,
@@ -36,7 +40,13 @@ import { AppUpdateService } from './app-update.service';
       registrationStrategy: 'registerWhenStable:30000',
     }),
   ],
-  providers: [PerformanceMonitoringService, SnackService, AppUpdateService],
+  providers: [
+    PerformanceMonitoringService,
+    SnackService,
+    AppUpdateService,
+    ScreenTrackingService,
+    UserTrackingService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
