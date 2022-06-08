@@ -33,5 +33,7 @@
       "Label": "How should the team be called?",
       "Placeholder": "Team name"
     }
-  }
+  },
+  "OK": "OK",
+  "MustBeLoggedIn": "You must be logged in!"
 }
