@@ -1,15 +1,15 @@
-<h1>Mannschaft Details</h1>
+<h1>{{ "TeamDetails" | translate }}</h1>
 
 <div *ngIf="team">
   <mat-card>
     <mat-card-title>{{ team.name }}</mat-card-title>
     <mat-card-subtitle></mat-card-subtitle>
     <mat-card-content>
-      <p>Anzahl der Spieler: {{ team.players.length }}</p>
+      <p>{{ "PlayersAmount" | translate }}: {{ team.players.length }}</p>
     </mat-card-content>
     <mat-card-actions align="end">
       <button mat-button [routerLink]="['/team/' + team.id + '/players']">
-        <mat-icon>group</mat-icon> Spieler
+        <mat-icon>group</mat-icon> {{ "Player" | translate }}
       </button>
     </mat-card-actions>
   </mat-card>

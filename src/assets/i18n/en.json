@@ -17,5 +17,21 @@
   "deleteProfile": "Delete profile",
   "Logout": "Logout",
   "LoggedInAs": "Logged in as",
-  "GoogleLogin": "Login with Google"
+  "GoogleLogin": "Login with Google",
+  "Name": "Name",
+  "Action": "Action",
+  "Details": "Details",
+  "noTeamsFound": "No teams found",
+  "TeamDetails": "Team detail",
+  "PlayersAmount": "Amount of players",
+  "Player": "Player",
+  "CreateTeam": "Create team",
+  "Cancel": "Cancel",
+  "Create": "Create",
+  "CreateTeamForm": {
+    "Name": {
+      "Label": "How should the team be called?",
+      "Placeholder": "Team name"
+    }
+  }
 }
