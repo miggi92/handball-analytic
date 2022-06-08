@@ -53,6 +53,9 @@
   "Number": "Number",
   "Save": "Save",
   "Firstname": "First name",
-  "Lastname": "Lastname",
-  "FillInGameData": "Please fill in game data"
+  "Lastname": "Last name",
+  "FillInGameData": "Please fill in game data",
+  "PleaseRegister2Use": "Please register to use all functions.",
+  "RegisterHere": "You can register here.",
+  "AppDescription": "This application can be used to track handball statistics."
 }
