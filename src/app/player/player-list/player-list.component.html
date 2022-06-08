@@ -1,9 +1,11 @@
-<h1 i18n>Player list - {{ team.name }}</h1>
+<h1>{{ "player.List" | translate }} - {{ team.name }}</h1>
 
 <div class="mat-elevation-z8">
   <mat-table [dataSource]="players">
     <ng-container matColumnDef="active">
-      <mat-header-cell *matHeaderCellDef i18n> Active? </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>
+        {{ "Active" | translate }}?
+      </mat-header-cell>
 
       <mat-cell *matCellDef="let element"
         ><mat-checkbox
@@ -16,7 +18,9 @@
     </ng-container>
 
     <ng-container matColumnDef="isKeeper">
-      <mat-header-cell *matHeaderCellDef i18n> Player type </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>
+        {{ "player.Type" | translate }}</mat-header-cell
+      >
       <mat-cell *matCellDef="let element">
         <fa-icon *ngIf="element.isKeeper" [icon]="customIcons.keeper"></fa-icon>
         <fa-icon
@@ -27,14 +31,18 @@
     </ng-container>
     <!-- Name Column -->
     <ng-container matColumnDef="name">
-      <mat-header-cell *matHeaderCellDef i18n> Name </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>
+        {{ "Name" | translate }}
+      </mat-header-cell>
       <mat-cell *matCellDef="let element">
         {{ element.firstName }} {{ element.name }}
       </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="actionsColumn">
-      <mat-header-cell *matHeaderCellDef i18n> Action </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef i18n>
+        {{ "Action" | translate }}
+      </mat-header-cell>
       <mat-cell *matCellDef="let element">
         <div>
           <button
@@ -44,7 +52,7 @@
             i18n
           >
             <mat-icon>details</mat-icon>
-            Details
+            {{ "Details" | translate }}
           </button>
         </div>
 
@@ -54,7 +62,7 @@
           [routerLink]="['detail', element.id]"
           i18n
         >
-          <mat-icon>multiline_chart</mat-icon> Statistics
+          <mat-icon>multiline_chart</mat-icon> {{ "Statistics" | translate }}
         </button>
       </mat-cell>
     </ng-container>
@@ -63,7 +71,9 @@
     <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
 
     <tr class="mat-row" *matNoDataRow>
-      <td class="mat-cell" colspan="9999" i18n>No player found</td>
+      <td class="mat-cell" colspan="9999">
+        {{ "player.NotFound" | translate }}
+      </td>
     </tr>
   </mat-table>
 </div>
@@ -73,7 +83,7 @@
 <button
   mat-fab
   color="primary"
-  aria-label="Add a player"
+  attr.aria-valuenow="{{ 'player.Add' | translate }}"
   (click)="openPlayerCreationDialog()"
 >
   <mat-icon>add</mat-icon>

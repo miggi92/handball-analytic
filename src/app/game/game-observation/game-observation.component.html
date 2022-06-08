@@ -2,43 +2,43 @@
   <div class="button-grid">
     <button mat-raised-button (click)="onClickEvent('goal')">Tor</button>
     <button mat-raised-button color="warn" (click)="onClickEvent('noGoal')">
-      Fehlwurf
+      {{ "Missed" | translate }}
     </button>
     <button
       mat-raised-button
       color="warn"
       (click)="onClickEvent('technicalError')"
     >
-      Technischer Fehler
+      {{ "TechnicalError" | translate }}
     </button>
     <button
       mat-raised-button
       color="warn"
       (click)="onClickEvent('incompletion')"
     >
-      Pass-/ Fangfehler
+      {{ "Incompletion" | translate }}
     </button>
     <button mat-raised-button (click)="onClickEvent('fastBreak')">
-      1./ 2. Welle
+      {{ "FastBreak" | translate }}
     </button>
     <button mat-raised-button (click)="onClickEvent('penalty')">7m</button>
     <button mat-raised-button color="warn" (click)="onClickEvent('twoMinutes')">
-      2 Minuten
+      {{ "TwoMinutes" | translate }}
     </button>
     <button mat-raised-button (click)="onClickEvent('goalkeeperChange')">
-      Torhüter Wechsel
+      {{ "goalkeeper.Change" | translate }}
     </button>
   </div>
   <br />
   <div *ngIf="game.statistics && game.statistics.activeKeeper">
-    <h2>Aktive Torhüter</h2>
+    <h2>{{ "goalkeeper.Active" | translate }}</h2>
     <div
       *ngIf="
         game.statistics.activeKeeper.home &&
         getPlayerFromID(game.statistics.activeKeeper.home)
       "
     >
-      <p>Heim</p>
+      <p>{{ "Home" | translate }}</p>
       <button mat-raised-button>
         {{ getPlayerFromID(game.statistics.activeKeeper.home).number }} -
         {{ getPlayerFromID(game.statistics.activeKeeper.home).name }}
@@ -50,7 +50,7 @@
         getPlayerFromID(game.statistics.activeKeeper.away)
       "
     >
-      <p>Gast</p>
+      <p>{{ "Away" | translate }}</p>
       <button mat-raised-button>
         {{ getPlayerFromID(game.statistics.activeKeeper.away).number }} -
         {{ getPlayerFromID(game.statistics.activeKeeper.away).name }}
@@ -62,7 +62,7 @@
   <ng-container
     *ngTemplateOutlet="
       playersTemplate;
-      context: { players: game.players.home, title: 'Eigene Spieler' }
+      context: { players: game.players.home, title: 'HomePlayer' }
     "
   ></ng-container>
 
@@ -70,13 +70,13 @@
   <ng-container
     *ngTemplateOutlet="
       playersTemplate;
-      context: { players: game.players.away, title: 'Gegner' }
+      context: { players: game.players.away, title: 'AwayPlayer' }
     "
   ></ng-container>
 </div>
 
 <ng-template #noPlayers>
-  <h2>Keine Spieler zugeordnet</h2>
+  <h2>{{ "player.NoOneAssigned" | translate }}</h2>
 </ng-template>
 
 <ng-template #playersTemplate let-players="players" let-title="title">
@@ -90,14 +90,18 @@
         <div class="mat-elevation-z8">
           <mat-table [dataSource]="players">
             <ng-container matColumnDef="number">
-              <mat-header-cell *matHeaderCellDef> Nummer </mat-header-cell>
+              <mat-header-cell *matHeaderCellDef>
+                {{ "Number" | translate }}
+              </mat-header-cell>
               <mat-cell *matCellDef="let element">
                 {{ element.number }}
               </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="name">
-              <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+              <mat-header-cell *matHeaderCellDef>
+                {{ "Name" | translate }}
+              </mat-header-cell>
               <mat-cell *matCellDef="let element"
                 >{{ element.firstName }} {{ element.name }}
               </mat-cell>
@@ -114,7 +118,7 @@
                     element.id
                   ]"
                 >
-                  <mat-icon>details</mat-icon> Details
+                  <mat-icon>details</mat-icon> {{ "Details" | translate }}
                 </button>
               </mat-cell>
             </ng-container>
@@ -125,7 +129,9 @@
             <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
 
             <tr class="mat-row" *matNoDataRow>
-              <td class="mat-cell" colspan="9999">Keine Spiele gefunden</td>
+              <td class="mat-cell" colspan="9999">
+                {{ "game.NotFound" | translate }}
+              </td>
             </tr>
           </mat-table>
         </div>

@@ -1,4 +1,4 @@
-<h1>Spieler Details</h1>
+<h1>{{ "player.Details" | translate }}</h1>
 
 <div *ngIf="player">
   <mat-card>
@@ -9,14 +9,14 @@
     </mat-card-header>
     <mat-card-content>
       <mat-slide-toggle [(ngModel)]="player.active" [disabled]="!editable"
-        >Spieler aktiv?</mat-slide-toggle
+        >{{ "player.Active" | translate }}?</mat-slide-toggle
       >
       <br /><br />
       <mat-slide-toggle [(ngModel)]="player.isKeeper" [disabled]="!editable"
-        >Torhüter?</mat-slide-toggle
+        >{{ "Goalkeeper" | translate }}?</mat-slide-toggle
       ><br /><br />
       <mat-form-field appearance="fill">
-        <mat-label>Nummer</mat-label>
+        <mat-label>{{ "Number" | translate }}</mat-label>
         <input
           matInput
           [(ngModel)]="player.number"
@@ -38,7 +38,7 @@
     <button
       mat-fab
       color="primary"
-      aria-label="Add a player"
+      attr.aria-valuenow="{{ 'player.Add' | translate }}"
       (click)="onEdit()"
     >
       <mat-icon>edit</mat-icon>
@@ -50,7 +50,7 @@
       mat-fab
       color="primary"
       [disabled]="!editable"
-      aria-label="Save"
+      attr.aria-valuenow="{{ 'Save' | translate }}"
       (click)="onSave()"
     >
       <mat-icon>save</mat-icon>

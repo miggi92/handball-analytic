@@ -1,8 +1,10 @@
-<h1>Spielübersicht</h1>
+<h1>{{ "game.Detail" | translate }}</h1>
 
 <div *ngIf="game">
   <mat-card>
-    <mat-card-title>Gegner: {{ game.teams.away["name"] }}</mat-card-title>
+    <mat-card-title
+      >{{ "Away" | translate }}: {{ game.teams.away["name"] }}</mat-card-title
+    >
     <mat-card-subtitle>{{ game.date }}</mat-card-subtitle>
     <mat-card-content> </mat-card-content>
   </mat-card>
@@ -11,7 +13,7 @@
       <mat-tab>
         <ng-template mat-tab-label>
           <mat-icon class="tab-icon">remove_red_eye</mat-icon>
-          Beobachtung
+          {{ "Observation" | translate }}
         </ng-template>
         <app-game-observation [game]="game"></app-game-observation>
       </mat-tab>
@@ -23,7 +25,7 @@
       <mat-tab
         ><ng-template mat-tab-label>
           <mat-icon class="tab-icon">history</mat-icon>
-          Verlauf
+          {{ "History" | translate }}
         </ng-template>
         <app-game-history [game]="game"></app-game-history>
       </mat-tab>
@@ -31,14 +33,14 @@
     <mat-tab *ngIf="game.statistics"
       ><ng-template mat-tab-label>
         <mat-icon class="tab-icon">show_chart</mat-icon>
-        Statistik
+        {{ "Statistic" | translate }}
       </ng-template>
       <app-game-statistic [game]="game"></app-game-statistic>
     </mat-tab>
     <mat-tab>
       <ng-template mat-tab-label>
         <mat-icon class="tab-icon">settings</mat-icon>
-        Einstellungen
+        {{ "Settings" | translate }}
       </ng-template>
       <app-game-settings [game]="game"></app-game-settings>
     </mat-tab>
