@@ -4,7 +4,7 @@
       playersTemplate;
       context: {
         players: game.statistics.home,
-        title: 'Eigene Spieler',
+        title: 'HomePlayer',
         team: 'home'
       }
     "
@@ -19,7 +19,7 @@
       playersTemplate;
       context: {
         players: game.statistics.away,
-        title: 'Gegnerische Spieler',
+        title: 'AwayPlayer',
         team: 'away'
       }
     "
@@ -41,13 +41,15 @@
     >
       <mat-expansion-panel [expanded]="true">
         <mat-expansion-panel-header>
-          <mat-panel-title> {{ title }} </mat-panel-title>
+          <mat-panel-title> {{ title | translate }} </mat-panel-title>
           <mat-panel-description> </mat-panel-description>
         </mat-expansion-panel-header>
         <div class="mat-elevation-z8">
           <mat-table [dataSource]="players">
             <ng-container matColumnDef="player">
-              <mat-header-cell *matHeaderCellDef> Spieler </mat-header-cell>
+              <mat-header-cell *matHeaderCellDef>
+                {{ "Player" | translate }}
+              </mat-header-cell>
               <mat-cell *matCellDef="let element">
                 {{ displayPlayerInfo(element.playerId) }}
               </mat-cell>
@@ -55,7 +57,9 @@
             </ng-container>
 
             <ng-container matColumnDef="goals">
-              <mat-header-cell *matHeaderCellDef> Tore </mat-header-cell>
+              <mat-header-cell *matHeaderCellDef>
+                {{ "Goals" | translate }}
+              </mat-header-cell>
               <mat-cell *matCellDef="let element">
                 {{ element.goals }}
               </mat-cell>
@@ -65,7 +69,9 @@
             </ng-container>
 
             <ng-container matColumnDef="missed">
-              <mat-header-cell *matHeaderCellDef> Fehlwürfe </mat-header-cell>
+              <mat-header-cell *matHeaderCellDef>
+                {{ "Missed" | translate }}
+              </mat-header-cell>
               <mat-cell *matCellDef="let element">
                 {{ element.missed }}
               </mat-cell>
@@ -76,7 +82,7 @@
 
             <ng-container matColumnDef="incompletion">
               <mat-header-cell *matHeaderCellDef>
-                Pass-/Fangfehler
+                {{ "Incompletion" | translate }}
               </mat-header-cell>
               <mat-cell *matCellDef="let element">
                 {{ element.incompletion }}
@@ -87,7 +93,9 @@
             </ng-container>
 
             <ng-container matColumnDef="twoMinutes">
-              <mat-header-cell *matHeaderCellDef> 2 min </mat-header-cell>
+              <mat-header-cell *matHeaderCellDef>
+                {{ "TwoMinutes" | translate }}
+              </mat-header-cell>
               <mat-cell *matCellDef="let element">
                 {{ element.twoMinutes }}
               </mat-cell>
@@ -97,7 +105,9 @@
             </ng-container>
 
             <ng-container matColumnDef="redCard">
-              <mat-header-cell *matHeaderCellDef> Rot </mat-header-cell>
+              <mat-header-cell *matHeaderCellDef>
+                {{ "RedCard" | translate }}
+              </mat-header-cell>
               <mat-cell *matCellDef="let element">
                 {{ element.redCard }}
               </mat-cell>
@@ -108,7 +118,7 @@
 
             <ng-container matColumnDef="technicalError">
               <mat-header-cell *matHeaderCellDef>
-                Techn. Fehler
+                {{ "TechnicalError" | translate }}
               </mat-header-cell>
               <mat-cell *matCellDef="let element">
                 {{ element.technicalError }}
@@ -119,7 +129,9 @@
             </ng-container>
 
             <ng-container matColumnDef="hpi">
-              <mat-header-cell *matHeaderCellDef> HPI </mat-header-cell>
+              <mat-header-cell *matHeaderCellDef>
+                {{ "HPI" | translate }}
+              </mat-header-cell>
               <mat-cell *matCellDef="let element">
                 {{ element.hpi }}
               </mat-cell>
@@ -138,7 +150,9 @@
             ></mat-footer-row>
 
             <tr class="mat-row" *matNoDataRow>
-              <td class="mat-cell" colspan="9999">Keine Statistik gefunden</td>
+              <td class="mat-cell" colspan="9999">
+                {{ "stats.NotFound" | translate }}
+              </td>
             </tr>
           </mat-table>
         </div>
