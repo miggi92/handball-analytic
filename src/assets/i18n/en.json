@@ -15,5 +15,7 @@
   "Info": "Information",
   "Version": "Version",
   "deleteProfile": "Delete profile",
-  "Logout": "Logout"
+  "Logout": "Logout",
+  "LoggedInAs": "Logged in as",
+  "GoogleLogin": "Login with Google"
 }
