@@ -9,7 +9,7 @@ describe('AppComponent', () => {
       declarations: [AppComponent],
       imports: [
         ServiceWorkerModule.register('', { enabled: false }),
-        TranslateTestingModule,
+        TranslateTestingModule.withTranslations({}),
       ],
     }).compileComponents();
   });
