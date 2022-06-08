@@ -42,11 +42,17 @@
     "Details": "Player detail",
     "Active": "Player active"
   },
+  "game": {
+    "Create": "Create game"
+  },
   "OK": "OK",
   "MustBeLoggedIn": "You must be logged in!",
   "Active": "Active",
   "Statistics": "Statistics",
   "Goalkeeper": "Goalkeeper",
   "Number": "Number",
-  "Save": "Save"
+  "Save": "Save",
+  "Firstname": "First name",
+  "Lastname": "Lastname",
+  "FillInGameData": "Please fill in game data"
 }
