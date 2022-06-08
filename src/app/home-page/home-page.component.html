@@ -1,3 +1,8 @@
-<h1>Handball Spielanalysen</h1>
-<p>Hier können Sie Spielanalysen während des Spieles durchführen und speichern.</p>
-<p>Um das nutzen zu können müssen Sie sich allerdings vorher erstmal registrieren</p>
+<h1>{{ "AppTitle" | translate }}</h1>
+<p>
+  {{ "AppDescription" | translate }}
+</p>
+<p *ngIf="!(auth.user$ | async)">
+  {{ "PleaseRegister2Use" | translate }}
+  <a routerLink="/user/login">{{ "RegisterHere" | translate }}</a>
+</p>

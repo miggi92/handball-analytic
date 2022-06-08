@@ -10,9 +10,13 @@ export class SnackService {
   constructor(private snackBar: MatSnackBar, private router: Router) {}
 
   authError() {
-    this.snackBar.open('You must be logged in!', 'OK', {
-      duration: 5000,
-    });
+    this.snackBar.open(
+      '{{"MustBeLoggedIn"| translate}}',
+      '{{"OK" | translate }}',
+      {
+        duration: 5000,
+      }
+    );
 
     if (this.snackBar._openedSnackBarRef) {
       return this.snackBar._openedSnackBarRef
@@ -25,7 +29,7 @@ export class SnackService {
   }
 
   error(msg: string) {
-    this.openSnack(msg, 'Ok!');
+    this.openSnack(msg, '{{"OK" | translate }}!');
   }
 
   openSnack(msg: string, action: string) {

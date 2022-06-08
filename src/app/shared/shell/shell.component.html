@@ -9,42 +9,44 @@
     [mode]="(isHandset$ | async) ? 'over' : 'side'"
     [opened]="false"
   >
-    <mat-toolbar>Menu</mat-toolbar>
+    <mat-toolbar>{{ "Menu" | translate }}</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item routerLink="/" (click)="drawer.close()">Home</a>
+      <a mat-list-item routerLink="/" (click)="drawer.close()">{{
+        "Home" | translate
+      }}</a>
       <a
         mat-list-item
         routerLink="/club"
         (click)="drawer.close()"
         *ngIf="auth.user$ | async as user"
-        >Vereine</a
+        >{{ "Clubs" | translate }}</a
       >
       <a
         mat-list-item
         routerLink="/team"
         (click)="drawer.close()"
         *ngIf="auth.user$ | async as user"
-        >Mannschaften</a
+        >{{ "Teams" | translate }}</a
       >
       <a
         mat-list-item
         routerLink="/game"
         (click)="drawer.close()"
         *ngIf="auth.user$ | async as user"
-        >Spiele</a
+        >{{ "Games" | translate }}</a
       >
-      <a mat-list-item routerLink="/base/imprint" (click)="drawer.close()"
-        >Impressum</a
-      >
-      <a mat-list-item routerLink="/base/privacy" (click)="drawer.close()"
-        >Datenschutz</a
-      >
+      <a mat-list-item routerLink="/base/imprint" (click)="drawer.close()">{{
+        "Imprint" | translate
+      }}</a>
+      <a mat-list-item routerLink="/base/privacy" (click)="drawer.close()">{{
+        "Privacy" | translate
+      }}</a>
       <a
         mat-list-item
         routerLink="/user/login"
         *ngIf="!(auth.user$ | async)"
         (click)="drawer.close()"
-        >Login</a
+        >{{ "Login" | translate }}</a
       >
       <a
         mat-list-item
@@ -68,24 +70,29 @@
       >
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span class="logo" routerLink="/">🤾‍♂️ Game Analysis</span>
+      <span class="logo" routerLink="/">🤾‍♂️ {{ "AppTitle" | translate }}</span>
 
       <span class="fill-space"></span>
       <div *ngIf="!(isHandset$ | async)">
         <a mat-button routerLink="/club" *ngIf="auth.user$ | async as user"
-          >💼 Vereine</a
+          >💼 {{ "Clubs" | translate }}</a
         >
         <a mat-button routerLink="/team" *ngIf="auth.user$ | async as user"
-          >👥 Mannschaften</a
+          >👥 {{ "Teams" | translate }}</a
         >
         <a mat-button routerLink="/game" *ngIf="auth.user$ | async as user"
-          >🎮 Spiele</a
+          >🎮 {{ "Games" | translate }}</a
         >
-        <a mat-button routerLink="/base/imprint">📖 Impressum</a>
-        <a mat-button routerLink="/base/privacy">🔒 Datenschutz</a>
+        <a mat-button routerLink="/base/imprint"
+          >📖 {{ "Imprint" | translate }}</a
+        >
+        <a mat-button routerLink="/base/privacy"
+          >🔒 {{ "Privacy" | translate }}</a
+        >
         <a mat-button routerLink="/user/login" *ngIf="!(auth.user$ | async)"
-          >🔑 Login</a
+          >🔑 {{ "Login" | translate }}</a
         >
+
         <a
           mat-button
           routerLink="/user/profile"

@@ -1,3 +1,4 @@
+import { TranslateService } from '@ngx-translate/core';
 import { environment } from '../../../environments/environment';
 import { Component, OnInit } from '@angular/core';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
@@ -16,7 +17,11 @@ export class ProfileComponent implements OnInit {
   clubs: Club[] = [];
   sub: Subscription = new Subscription();
 
-  constructor(public auth: AuthService, private clubDB: ClubDatabaseService) {}
+  constructor(
+    public auth: AuthService,
+    private clubDB: ClubDatabaseService,
+    public translate: TranslateService
+  ) {}
 
   ngOnInit(): void {
     this.sub = this.clubDB
@@ -30,5 +35,11 @@ export class ProfileComponent implements OnInit {
     } else {
       this.auth.changeActiveClub('');
     }
+  }
+  changeLanguage(selectedValue) {
+    var language = selectedValue.value;
+    console.log(language);
+    this.auth.updateUserLanguage(language);
+    this.translate.use(language);
   }
 }

@@ -4,9 +4,10 @@ export interface User {
   photoURL?: string;
   displayName?: string;
   roles?: {
-    admin?: boolean,
-    coach?: boolean
-  },
+    admin?: boolean;
+    coach?: boolean;
+  };
+  language?: string;
   activeClub?: string;
   // fcmTokens?: { [token: string]: true };
 }
