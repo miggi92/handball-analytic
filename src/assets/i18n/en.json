@@ -1,7 +1,7 @@
 {
   "Menu": "Menu",
   "Home": "Home",
-  "AppTitle": "Game Analysis",
+  "AppTitle": "Game analysis",
   "Clubs": "Clubs",
   "Teams": "Teams",
   "Games": "Games",
@@ -9,5 +9,11 @@
   "Privacy": "Privacy",
   "Login": "Login",
   "Language": "Language",
-  "Settings": "Settings"
+  "Settings": "Settings",
+  "AssignedClubs": "Assigned clubs",
+  "Profile": "Profile",
+  "Info": "Information",
+  "Version": "Version",
+  "deleteProfile": "Delete profile",
+  "Logout": "Logout"
 }
