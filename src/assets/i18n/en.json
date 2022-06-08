@@ -23,7 +23,6 @@
   "Details": "Details",
   "noTeamsFound": "No teams found",
   "TeamDetails": "Team detail",
-  "PlayersAmount": "Amount of players",
   "Player": "Player",
   "CreateTeam": "Create team",
   "Cancel": "Cancel",
@@ -34,6 +33,20 @@
       "Placeholder": "Team name"
     }
   },
+  "player": {
+    "Type": "Player type",
+    "List": "Player list",
+    "Amount": "Amount of players",
+    "NotFound": "No players found",
+    "Add": "Add player",
+    "Details": "Player detail",
+    "Active": "Player active"
+  },
   "OK": "OK",
-  "MustBeLoggedIn": "You must be logged in!"
+  "MustBeLoggedIn": "You must be logged in!",
+  "Active": "Active",
+  "Statistics": "Statistics",
+  "Goalkeeper": "Goalkeeper",
+  "Number": "Number",
+  "Save": "Save"
 }
