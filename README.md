@@ -10,6 +10,9 @@
 - [Getting Started](./docs/gettingStarted.md)
 - [Development](./docs/development/dev.md)
 
+## Mobile Application 
+[Mobile Repo](https://github.com/miggi92/handball-analytic-mobile)
+
 ## Contributing
 
 All info how to contribute under the [CONTRIBUTING](./CONTRIBUTING.md) file.
