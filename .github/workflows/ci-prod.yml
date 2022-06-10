@@ -37,6 +37,16 @@ jobs:
           name: test-results
           path: testResults/TESTS.xml
       - uses: FirebaseExtended/action-hosting-deploy@v0
+        name: Preview Deployment
+        if: github.event_name === 'pull_request'
+        with:
+          repoToken: "${{ secrets.GITHUB_TOKEN }}"
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_GAMEANALYSIS_MGM12 }}"
+          projectId: gameanalysis-mgm12
+          expires: 3d
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        name: Deploy 2 prod
+        if: github.event_name != 'pull_request'
         with:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_GAMEANALYSIS_MGM12 }}"
