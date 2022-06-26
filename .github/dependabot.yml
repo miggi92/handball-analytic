@@ -5,7 +5,28 @@
 
 version: 2
 updates:
+  # Maintain dependencies for GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    # Specify labels for npm pull requests
+    labels:
+      - "github-actions"
+      - "dependencies"
+    # Add reviewers
+    reviewers:
+      - "miggi92"
+
+  # Maintain dependencies for npm
   - package-ecosystem: "npm" # See documentation for possible values
     directory: "/" # Location of package manifests
     schedule:
       interval: "daily"
+    # Specify labels for npm pull requests
+    labels:
+      - "npm"
+      - "dependencies"
+    # Add reviewers
+    reviewers:
+      - "miggi92"
